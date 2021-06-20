@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="newgps"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="newgps">
+				<Option output="/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/newgps" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/Makefile&quot;  VERBOSE=1 newgps"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="newgps/fast">
+				<Option output="/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/newgps" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/Makefile&quot;  VERBOSE=1 newgps/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/matt/mnt/satpi/src/gps/newgps/src/newgps.c">
+			<Option target="newgps"/>
+		</Unit>
+		<Unit filename="/Users/matt/mnt/satpi/src/gps/newgps/src/newgps.h">
+			<Option target="newgps"/>
+		</Unit>
+		<Unit filename="/Users/matt/mnt/satpi/src/gps/newgps/src/serial.c">
+			<Option target="newgps"/>
+		</Unit>
+		<Unit filename="/Users/matt/mnt/satpi/src/gps/newgps/src/serial.h">
+			<Option target="newgps"/>
+		</Unit>
+		<Unit filename="/Users/matt/mnt/satpi/src/gps/newgps/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
