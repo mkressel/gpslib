@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/newgps.dir/src/newgps.c.o"
+  "CMakeFiles/newgps.dir/src/gpslib.c.o"
   "CMakeFiles/newgps.dir/src/serial.c.o"
   "newgps"
   "newgps.pdb"

@@ -1,0 +1,1 @@
+/usr/bin/cc    CMakeFiles/gpslib_tester.dir/src/serial.c.o CMakeFiles/gpslib_tester.dir/src/gpslib.c.o CMakeFiles/gpslib_tester.dir/src/gpslib_tester.c.o  -o gpslib_tester 

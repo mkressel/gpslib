@@ -72,7 +72,8 @@ CMAKE_BINARY_DIR = /Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/newgps.dir/all
+all: CMakeFiles/gpslib_tester.dir/all
+all: CMakeFiles/gps.dir/all
 
 .PHONY : all
 
@@ -82,36 +83,64 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/newgps.dir/clean
+clean: CMakeFiles/gpslib_tester.dir/clean
+clean: CMakeFiles/gps.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/newgps.dir
+# Target rules for target CMakeFiles/gpslib_tester.dir
 
 # All Build rule for target.
-CMakeFiles/newgps.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/newgps.dir/build.make CMakeFiles/newgps.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/newgps.dir/build.make CMakeFiles/newgps.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target newgps"
-.PHONY : CMakeFiles/newgps.dir/all
+CMakeFiles/gpslib_tester.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpslib_tester.dir/build.make CMakeFiles/gpslib_tester.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpslib_tester.dir/build.make CMakeFiles/gpslib_tester.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/CMakeFiles --progress-num=4,5,6,7 "Built target gpslib_tester"
+.PHONY : CMakeFiles/gpslib_tester.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/newgps.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/CMakeFiles 3
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/newgps.dir/all
+CMakeFiles/gpslib_tester.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/CMakeFiles 4
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/gpslib_tester.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/newgps.dir/rule
+.PHONY : CMakeFiles/gpslib_tester.dir/rule
 
 # Convenience name for target.
-newgps: CMakeFiles/newgps.dir/rule
+gpslib_tester: CMakeFiles/gpslib_tester.dir/rule
 
-.PHONY : newgps
+.PHONY : gpslib_tester
 
 # clean rule for target.
-CMakeFiles/newgps.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/newgps.dir/build.make CMakeFiles/newgps.dir/clean
-.PHONY : CMakeFiles/newgps.dir/clean
+CMakeFiles/gpslib_tester.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gpslib_tester.dir/build.make CMakeFiles/gpslib_tester.dir/clean
+.PHONY : CMakeFiles/gpslib_tester.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/gps.dir
+
+# All Build rule for target.
+CMakeFiles/gps.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gps.dir/build.make CMakeFiles/gps.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gps.dir/build.make CMakeFiles/gps.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target gps"
+.PHONY : CMakeFiles/gps.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/gps.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/CMakeFiles 3
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/gps.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/gps.dir/rule
+
+# Convenience name for target.
+gps: CMakeFiles/gps.dir/rule
+
+.PHONY : gps
+
+# clean rule for target.
+CMakeFiles/gps.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gps.dir/build.make CMakeFiles/gps.dir/clean
+.PHONY : CMakeFiles/gps.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

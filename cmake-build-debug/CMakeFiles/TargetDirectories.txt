@@ -1,3 +1,4 @@
 /Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/CMakeFiles/rebuild_cache.dir
 /Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/CMakeFiles/newgps.dir
+/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/CMakeFiles/gpslib_tester.dir
+/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/CMakeFiles/gps.dir

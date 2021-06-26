@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/cc -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -dynamiclib -Wl,-headerpad_max_install_names -o libgpslib.dylib -install_name @rpath/libgpslib.dylib CMakeFiles/gpslib.dir/src/serial.c.o CMakeFiles/gpslib.dir/src/gpslib.c.o 

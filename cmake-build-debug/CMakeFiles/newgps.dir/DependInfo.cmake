@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/Users/matt/mnt/satpi/src/gps/newgps/src/newgps.c" "/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/CMakeFiles/newgps.dir/src/newgps.c.o"
+  "/Users/matt/mnt/satpi/src/gps/newgps/src/gpslib.c" "/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/CMakeFiles/newgps.dir/src/gpslib.c.o"
   "/Users/matt/mnt/satpi/src/gps/newgps/src/serial.c" "/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/CMakeFiles/newgps.dir/src/serial.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")

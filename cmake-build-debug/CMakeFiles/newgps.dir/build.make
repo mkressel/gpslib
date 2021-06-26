@@ -76,18 +76,18 @@ include CMakeFiles/newgps.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/newgps.dir/flags.make
 
-CMakeFiles/newgps.dir/src/newgps.c.o: CMakeFiles/newgps.dir/flags.make
-CMakeFiles/newgps.dir/src/newgps.c.o: ../src/newgps.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/newgps.dir/src/newgps.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/newgps.dir/src/newgps.c.o -c /Users/matt/mnt/satpi/src/gps/newgps/src/newgps.c
+CMakeFiles/newgps.dir/src/gpslib.c.o: CMakeFiles/newgps.dir/flags.make
+CMakeFiles/newgps.dir/src/gpslib.c.o: ../src/gpslib.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/matt/mnt/satpi/src/gps/newgps/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/newgps.dir/src/gpslib.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/newgps.dir/src/gpslib.c.o -c /Users/matt/mnt/satpi/src/gps/newgps/src/gpslib.c
 
-CMakeFiles/newgps.dir/src/newgps.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/newgps.dir/src/newgps.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/matt/mnt/satpi/src/gps/newgps/src/newgps.c > CMakeFiles/newgps.dir/src/newgps.c.i
+CMakeFiles/newgps.dir/src/gpslib.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/newgps.dir/src/gpslib.c.i"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/matt/mnt/satpi/src/gps/newgps/src/gpslib.c > CMakeFiles/newgps.dir/src/gpslib.c.i
 
-CMakeFiles/newgps.dir/src/newgps.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/newgps.dir/src/newgps.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/matt/mnt/satpi/src/gps/newgps/src/newgps.c -o CMakeFiles/newgps.dir/src/newgps.c.s
+CMakeFiles/newgps.dir/src/gpslib.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/newgps.dir/src/gpslib.c.s"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/matt/mnt/satpi/src/gps/newgps/src/gpslib.c -o CMakeFiles/newgps.dir/src/gpslib.c.s
 
 CMakeFiles/newgps.dir/src/serial.c.o: CMakeFiles/newgps.dir/flags.make
 CMakeFiles/newgps.dir/src/serial.c.o: ../src/serial.c
@@ -104,13 +104,13 @@ CMakeFiles/newgps.dir/src/serial.c.s: cmake_force
 
 # Object files for target newgps
 newgps_OBJECTS = \
-"CMakeFiles/newgps.dir/src/newgps.c.o" \
+"CMakeFiles/newgps.dir/src/gpslib.c.o" \
 "CMakeFiles/newgps.dir/src/serial.c.o"
 
 # External object files for target newgps
 newgps_EXTERNAL_OBJECTS =
 
-newgps: CMakeFiles/newgps.dir/src/newgps.c.o
+newgps: CMakeFiles/newgps.dir/src/gpslib.c.o
 newgps: CMakeFiles/newgps.dir/src/serial.c.o
 newgps: CMakeFiles/newgps.dir/build.make
 newgps: CMakeFiles/newgps.dir/link.txt

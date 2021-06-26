@@ -8,8 +8,7 @@
 #include <stdlib.h>
 
 #include "serial.h"
-#include "newgps.h"
-
+#include "gpslib.h"
 
 /* globals */
 
@@ -21,29 +20,8 @@ rmc_data_t RmcDataGn;               /* Combined GPS and GLONASS RMC data */
 vtg_data_t VtgDataGn;               /* Combined GPS and GLONASS VTG data */
 gga_data_t GgaDataGn;               /* Combined GPS and GLONASS GGA data */
 gsa_data_t GsaDataGn;               /* Combined GPS and GLONASS GSA data */
-txt_data_t TxtDataGn;               /* Combined GPS and GLONASS TXT data */
+txt_data_t TxtDataGn;               /* Combined GPS and GLONASS GSA data */
 
-
-int main(int argc, char **argv) {
-    int sfd;
-    char buffer[255];
-    int nbytes;
-    int i;
-
-    if (serial_open() < 0) {
-        printf("Error: cannot open GPS port: %s\n", PORTNAME);
-        return -1;
-    }
-
-    while (1) {
-        nbytes = serial_readln(buffer);
-        if (checksum_valid(buffer)) {
-            parse_sentence(buffer);
-        } else {
-            printf("Checksum invalid for string: %s\n", buffer);
-        }
-    }
-}
 
 /* parse NMEA sentences */
 
@@ -54,7 +32,7 @@ int parse_sentence(char *buffer) {
         printf("GLGSV\n");
         parse_gsv(buffer, &GsvDataGlonass, GLGSV_MESSAGE);
         //print_gsv(GsvDataGlonass);
-        return 0;
+        return GLGSV_MESSAGE;
     }
 
     /* GPS GSV - $GPGSV */
@@ -62,31 +40,31 @@ int parse_sentence(char *buffer) {
         printf("GPGSV\n");
         parse_gsv(buffer, &GsvDataGps, GPGSV_MESSAGE);
         //print_gsv(GsvDataGps);
-        return 0;
+        return GPGSV_MESSAGE;
     }
 
     /* Combined GPS and GLONASS - $GNGLL */
     if (strncmp(buffer, NMEA_PREFIX_GNGLL, 5) == 0) {
         printf("GNGLL\n");
         parse_gll(buffer, &GllDataGn, GNGLL_MESSAGE);
-        print_gll(GllDataGn);
-        return 0;
+        //print_gll(GllDataGn);
+        return GNGLL_MESSAGE;
     }
 
     /* Combined GPS and GLONASS - $GNRMC */
     if (strncmp(buffer, NMEA_PREFIX_GNRMC, 5) == 0) {
         printf("GNRMC\n");
         parse_rmc(buffer, &RmcDataGn, GNRMC_MESSAGE);
-        print_rmc(RmcDataGn);
-        return 0;
+        //print_rmc(RmcDataGn);
+        return GNRMC_MESSAGE;
     }
 
     /* Combined GPS and GLONASS - $GNVTG */
     if (strncmp(buffer, NMEA_PREFIX_GNVTG, 5) == 0) {
         printf("GNVTG\n");
         parse_vtg(buffer, &VtgDataGn, GNVTG_MESSAGE);
-        print_vtg(VtgDataGn);
-        return 0;
+        //print_vtg(VtgDataGn);
+        return GNVTG_MESSAGE;
     }
 
     /* Combined GPS and GLONASS - $GNGGA */
@@ -94,23 +72,23 @@ int parse_sentence(char *buffer) {
         printf("GNGGA\n");
         parse_gga(buffer, &GgaDataGn, GNGGA_MESSAGE);
         //print_gga(GgaDataGn);
-        return 0;
+        return GNGGA_MESSAGE;
     }
 
     /* Combined GPS and GLONASS - $GNGSA */
     if (strncmp(buffer, NMEA_PREFIX_GNGSA, 5) == 0) {
         printf("GNGSA\n");
         parse_gsa(buffer, &GsaDataGn, GNGSA_MESSAGE);
-        print_gsa(GsaDataGn);
-        return 0;
+        //print_gsa(GsaDataGn);
+        return GNGSA_MESSAGE;
     }
 
     /* Combined GPS and GLONASS - $GNTXT */
     if (strncmp(buffer, NMEA_PREFIX_GNTXT, 5) == 0) {
         printf("GNTXT\n");
         parse_txt(buffer, &TxtDataGn, GNTXT_MESSAGE);
-        print_txt(TxtDataGn);
-        return 0;
+        //print_txt(TxtDataGn);
+        return GNTXT_MESSAGE;
     }
 
     printf("Unknown prefix: %s\n", buffer);

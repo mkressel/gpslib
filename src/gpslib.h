@@ -25,14 +25,14 @@
 #define NMEA_PREFIX_GNGSA           "$GNGSA"    /* GPS DOP and active satellites */
 #define NMEA_PREFIX_GNTXT           "$GNTXT"    /* GPS DOP and active satellites */
 
-#define GLGSV_MESSAGE       0x00    /* $GLGSV */
-#define GPGSV_MESSAGE       0x01    /* $GPGSV */
-#define GNGLL_MESSAGE       0x02    /* $GNGLL */
-#define GNRMC_MESSAGE       0x03    /* $GNRMC */
-#define GNVTG_MESSAGE       0x04    /* $GNVTG */
-#define GNGGA_MESSAGE       0x05    /* $GNGGA */
-#define GNGSA_MESSAGE       0x06    /* $GNGGA */
-#define GNTXT_MESSAGE       0x07    /* $GNGGA */
+#define GLGSV_MESSAGE       0x01    /* $GLGSV */
+#define GPGSV_MESSAGE       0x02    /* $GPGSV */
+#define GNGLL_MESSAGE       0x03    /* $GNGLL */
+#define GNRMC_MESSAGE       0x04    /* $GNRMC */
+#define GNVTG_MESSAGE       0x05    /* $GNVTG */
+#define GNGGA_MESSAGE       0x06    /* $GNGGA */
+#define GNGSA_MESSAGE       0x07    /* $GNGGA */
+#define GNTXT_MESSAGE       0x08    /* $GNGGA */
 
 /*
  * GSV satellite type
