@@ -1,1 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/cc -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/gpslib_tester.dir/src/serial.c.o CMakeFiles/gpslib_tester.dir/src/gpslib.c.o CMakeFiles/gpslib_tester.dir/src/gpslib_tester.c.o -o gpslib_tester 
