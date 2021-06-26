@@ -1,0 +1,1 @@
+/usr/bin/cc -fPIC   -shared -Wl,-soname,libsatgps.so -o libsatgps.so CMakeFiles/satgps.dir/src/serial.c.o CMakeFiles/satgps.dir/src/gpslib.c.o 

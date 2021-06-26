@@ -111,30 +111,30 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named gps
+# Target rules for targets named satgps
 
 # Build rule for target.
-gps: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 gps
-.PHONY : gps
+satgps: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 satgps
+.PHONY : satgps
 
 # fast build rule for target.
-gps/fast:
-	$(MAKE) -f CMakeFiles/gps.dir/build.make CMakeFiles/gps.dir/build
-.PHONY : gps/fast
+satgps/fast:
+	$(MAKE) -f CMakeFiles/satgps.dir/build.make CMakeFiles/satgps.dir/build
+.PHONY : satgps/fast
 
 #=============================================================================
-# Target rules for targets named gpslib_tester
+# Target rules for targets named satgps_tester
 
 # Build rule for target.
-gpslib_tester: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 gpslib_tester
-.PHONY : gpslib_tester
+satgps_tester: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 satgps_tester
+.PHONY : satgps_tester
 
 # fast build rule for target.
-gpslib_tester/fast:
-	$(MAKE) -f CMakeFiles/gpslib_tester.dir/build.make CMakeFiles/gpslib_tester.dir/build
-.PHONY : gpslib_tester/fast
+satgps_tester/fast:
+	$(MAKE) -f CMakeFiles/satgps_tester.dir/build.make CMakeFiles/satgps_tester.dir/build
+.PHONY : satgps_tester/fast
 
 src/gpslib.o: src/gpslib.c.o
 
@@ -142,8 +142,8 @@ src/gpslib.o: src/gpslib.c.o
 
 # target to build an object file
 src/gpslib.c.o:
-	$(MAKE) -f CMakeFiles/gps.dir/build.make CMakeFiles/gps.dir/src/gpslib.c.o
-	$(MAKE) -f CMakeFiles/gpslib_tester.dir/build.make CMakeFiles/gpslib_tester.dir/src/gpslib.c.o
+	$(MAKE) -f CMakeFiles/satgps.dir/build.make CMakeFiles/satgps.dir/src/gpslib.c.o
+	$(MAKE) -f CMakeFiles/satgps_tester.dir/build.make CMakeFiles/satgps_tester.dir/src/gpslib.c.o
 .PHONY : src/gpslib.c.o
 
 src/gpslib.i: src/gpslib.c.i
@@ -152,8 +152,8 @@ src/gpslib.i: src/gpslib.c.i
 
 # target to preprocess a source file
 src/gpslib.c.i:
-	$(MAKE) -f CMakeFiles/gps.dir/build.make CMakeFiles/gps.dir/src/gpslib.c.i
-	$(MAKE) -f CMakeFiles/gpslib_tester.dir/build.make CMakeFiles/gpslib_tester.dir/src/gpslib.c.i
+	$(MAKE) -f CMakeFiles/satgps.dir/build.make CMakeFiles/satgps.dir/src/gpslib.c.i
+	$(MAKE) -f CMakeFiles/satgps_tester.dir/build.make CMakeFiles/satgps_tester.dir/src/gpslib.c.i
 .PHONY : src/gpslib.c.i
 
 src/gpslib.s: src/gpslib.c.s
@@ -162,8 +162,8 @@ src/gpslib.s: src/gpslib.c.s
 
 # target to generate assembly for a file
 src/gpslib.c.s:
-	$(MAKE) -f CMakeFiles/gps.dir/build.make CMakeFiles/gps.dir/src/gpslib.c.s
-	$(MAKE) -f CMakeFiles/gpslib_tester.dir/build.make CMakeFiles/gpslib_tester.dir/src/gpslib.c.s
+	$(MAKE) -f CMakeFiles/satgps.dir/build.make CMakeFiles/satgps.dir/src/gpslib.c.s
+	$(MAKE) -f CMakeFiles/satgps_tester.dir/build.make CMakeFiles/satgps_tester.dir/src/gpslib.c.s
 .PHONY : src/gpslib.c.s
 
 src/gpslib_tester.o: src/gpslib_tester.c.o
@@ -172,7 +172,7 @@ src/gpslib_tester.o: src/gpslib_tester.c.o
 
 # target to build an object file
 src/gpslib_tester.c.o:
-	$(MAKE) -f CMakeFiles/gpslib_tester.dir/build.make CMakeFiles/gpslib_tester.dir/src/gpslib_tester.c.o
+	$(MAKE) -f CMakeFiles/satgps_tester.dir/build.make CMakeFiles/satgps_tester.dir/src/gpslib_tester.c.o
 .PHONY : src/gpslib_tester.c.o
 
 src/gpslib_tester.i: src/gpslib_tester.c.i
@@ -181,7 +181,7 @@ src/gpslib_tester.i: src/gpslib_tester.c.i
 
 # target to preprocess a source file
 src/gpslib_tester.c.i:
-	$(MAKE) -f CMakeFiles/gpslib_tester.dir/build.make CMakeFiles/gpslib_tester.dir/src/gpslib_tester.c.i
+	$(MAKE) -f CMakeFiles/satgps_tester.dir/build.make CMakeFiles/satgps_tester.dir/src/gpslib_tester.c.i
 .PHONY : src/gpslib_tester.c.i
 
 src/gpslib_tester.s: src/gpslib_tester.c.s
@@ -190,7 +190,7 @@ src/gpslib_tester.s: src/gpslib_tester.c.s
 
 # target to generate assembly for a file
 src/gpslib_tester.c.s:
-	$(MAKE) -f CMakeFiles/gpslib_tester.dir/build.make CMakeFiles/gpslib_tester.dir/src/gpslib_tester.c.s
+	$(MAKE) -f CMakeFiles/satgps_tester.dir/build.make CMakeFiles/satgps_tester.dir/src/gpslib_tester.c.s
 .PHONY : src/gpslib_tester.c.s
 
 src/serial.o: src/serial.c.o
@@ -199,8 +199,8 @@ src/serial.o: src/serial.c.o
 
 # target to build an object file
 src/serial.c.o:
-	$(MAKE) -f CMakeFiles/gps.dir/build.make CMakeFiles/gps.dir/src/serial.c.o
-	$(MAKE) -f CMakeFiles/gpslib_tester.dir/build.make CMakeFiles/gpslib_tester.dir/src/serial.c.o
+	$(MAKE) -f CMakeFiles/satgps.dir/build.make CMakeFiles/satgps.dir/src/serial.c.o
+	$(MAKE) -f CMakeFiles/satgps_tester.dir/build.make CMakeFiles/satgps_tester.dir/src/serial.c.o
 .PHONY : src/serial.c.o
 
 src/serial.i: src/serial.c.i
@@ -209,8 +209,8 @@ src/serial.i: src/serial.c.i
 
 # target to preprocess a source file
 src/serial.c.i:
-	$(MAKE) -f CMakeFiles/gps.dir/build.make CMakeFiles/gps.dir/src/serial.c.i
-	$(MAKE) -f CMakeFiles/gpslib_tester.dir/build.make CMakeFiles/gpslib_tester.dir/src/serial.c.i
+	$(MAKE) -f CMakeFiles/satgps.dir/build.make CMakeFiles/satgps.dir/src/serial.c.i
+	$(MAKE) -f CMakeFiles/satgps_tester.dir/build.make CMakeFiles/satgps_tester.dir/src/serial.c.i
 .PHONY : src/serial.c.i
 
 src/serial.s: src/serial.c.s
@@ -219,8 +219,8 @@ src/serial.s: src/serial.c.s
 
 # target to generate assembly for a file
 src/serial.c.s:
-	$(MAKE) -f CMakeFiles/gps.dir/build.make CMakeFiles/gps.dir/src/serial.c.s
-	$(MAKE) -f CMakeFiles/gpslib_tester.dir/build.make CMakeFiles/gpslib_tester.dir/src/serial.c.s
+	$(MAKE) -f CMakeFiles/satgps.dir/build.make CMakeFiles/satgps.dir/src/serial.c.s
+	$(MAKE) -f CMakeFiles/satgps_tester.dir/build.make CMakeFiles/satgps_tester.dir/src/serial.c.s
 .PHONY : src/serial.c.s
 
 # Help Target
@@ -231,8 +231,8 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... gps"
-	@echo "... gpslib_tester"
+	@echo "... satgps"
+	@echo "... satgps_tester"
 	@echo "... src/gpslib.o"
 	@echo "... src/gpslib.i"
 	@echo "... src/gpslib.s"

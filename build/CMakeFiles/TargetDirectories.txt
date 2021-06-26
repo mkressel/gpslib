@@ -1,4 +1,4 @@
 /home/pi/src/gps/newgps/build/CMakeFiles/rebuild_cache.dir
 /home/pi/src/gps/newgps/build/CMakeFiles/edit_cache.dir
-/home/pi/src/gps/newgps/build/CMakeFiles/gps.dir
-/home/pi/src/gps/newgps/build/CMakeFiles/gpslib_tester.dir
+/home/pi/src/gps/newgps/build/CMakeFiles/satgps.dir
+/home/pi/src/gps/newgps/build/CMakeFiles/satgps_tester.dir

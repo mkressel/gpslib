@@ -145,7 +145,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=gpslib
+CMAKE_PROJECT_NAME:STATIC=satgps
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -220,6 +220,12 @@ newgps_BINARY_DIR:STATIC=/home/pi/src/gps/newgps/build
 
 //Value Computed by CMake
 newgps_SOURCE_DIR:STATIC=/home/pi/src/gps/newgps
+
+//Value Computed by CMake
+satgps_BINARY_DIR:STATIC=/home/pi/src/gps/newgps/build
+
+//Value Computed by CMake
+satgps_SOURCE_DIR:STATIC=/home/pi/src/gps/newgps
 
 
 ########################

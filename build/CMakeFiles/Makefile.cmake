@@ -45,6 +45,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/gps.dir/DependInfo.cmake"
-  "CMakeFiles/gpslib_tester.dir/DependInfo.cmake"
+  "CMakeFiles/satgps.dir/DependInfo.cmake"
+  "CMakeFiles/satgps_tester.dir/DependInfo.cmake"
   )
