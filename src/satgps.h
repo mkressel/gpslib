@@ -128,7 +128,13 @@ typedef struct {
     char                message[128][100];           /* 100 messages of 128 chars each */
 } txt_data_t;
 
-/* all combined into one struct */
+/* all combined into one struct
+ *
+ * This is about 16K
+ * Needs recode to allow for declaring only some of the following structures
+ *
+ * */
+
 typedef struct {
     gsv_data_t GsvDataGlonass;          /* GLONASS GSV data */
     gsv_data_t GsvDataGps;              /* GPS GSV data */

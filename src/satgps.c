@@ -27,6 +27,7 @@ int gps_open() {
 
 int gps_read(char *buffer) {
     return serial_readln(buffer);
+
 }
 
 /* copies the error message into error_string */
@@ -316,7 +317,7 @@ int parse_rmc(char *buffer, rmc_data_t *RmcData, int rmc_type) {
     minutes[2] = '\0'; // null terminate
     strncpy(seconds, field[1] + 4, 2);
     seconds[2] = '\0'; // null terminate
-    
+
     RmcData->utc_date.tm_hour = atoi(hours);
     RmcData->utc_date.tm_min = atoi(minutes);
     RmcData->utc_date.tm_sec = atoi(seconds);
