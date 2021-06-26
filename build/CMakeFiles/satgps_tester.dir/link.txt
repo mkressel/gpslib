@@ -1,1 +1,0 @@
-/usr/bin/cc    CMakeFiles/satgps_tester.dir/src/serial.c.o CMakeFiles/satgps_tester.dir/src/satgps.c.o CMakeFiles/satgps_tester.dir/src/satgps_tester.c.o  -o satgps_tester 

@@ -1,2 +1,0 @@
-/usr/bin/ar qc libsatgps.a  CMakeFiles/satgps.dir/src/serial.c.o CMakeFiles/satgps.dir/src/satgps.c.o
-/usr/bin/ranlib libsatgps.a
