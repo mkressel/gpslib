@@ -5,3 +5,11 @@ Built for the Beitian BN-220 GPS module on a Raspberry Pi 4B, but could be porte
 This will eventually be a static library that can be linked to from your project. It is a work in progress. 
 
 Right now, it compiles into an executable, "newgps" which parses the GPS output and loads it into variables which can be accessed accordingly.
+
+### To Compile
+		cd build
+		make
+
+### To Test
+In the build/ folder run:
+		gpslib_tester
