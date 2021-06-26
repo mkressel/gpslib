@@ -50,7 +50,6 @@ void gps_set_filters(int filters) {
     /* malloc only wanted structs, this saves memory in low-mem situations */
 
     if(gps_is_filtered(GLGSV_MESSAGE)) {
-        printf("GLGSV filter\n");
         GpsData.GsvDataGlonass = (gsv_data_t *) malloc(sizeof(gsv_data_t));
     }
     if(gps_is_filtered(GPGSV_MESSAGE)) {

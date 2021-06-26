@@ -29,7 +29,7 @@ int main(int argc, char **argv) {
     gps_open();
 
     /* set filters to parse wanted sentences */
-    gps_set_filters(GNRMC_MESSAGE);
+    gps_set_filters(GNRMC_MESSAGE | GNTXT_MESSAGE);
 
     /* infinite read loop */
     while (1) {
@@ -56,7 +56,7 @@ int main(int argc, char **argv) {
             printf("Sentence: %s\n", sentence);
         };
 
-        print_gsv(GPGSV_MESSAGE);
+        //print_gsv(GPGSV_MESSAGE);
         //print_gsv();
         //print_gll();
 
@@ -66,7 +66,7 @@ int main(int argc, char **argv) {
         //print_gsa();
 
         /* usually filled when there's an error */
-        //print_txt();
+        print_txt();
 
     }
 }

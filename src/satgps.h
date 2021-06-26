@@ -136,17 +136,17 @@ typedef struct {
  * */
 
 typedef struct {
-    gsv_data_t *GsvDataGlonass;                 /* GLONASS GSV data */
-    gsv_data_t *GsvDataGps;                     /* GPS GSV data */
-    gll_data_t *GllDataGn;                      /* Combined GPS and GLONASS GLL data */
-    rmc_data_t *RmcDataGn;                      /* Combined GPS and GLONASS RMC data */
-    vtg_data_t *VtgDataGn;                      /* Combined GPS and GLONASS VTG data */
-    gga_data_t *GgaDataGn;                      /* Combined GPS and GLONASS GGA data */
-    gsa_data_t *GsaDataGn;                      /* Combined GPS and GLONASS GSA data */
-    txt_data_t *TxtDataGn;                      /* Combined GPS and GLONASS GSA data */
-    char       error_message[256];              /* buffer for error messages */
-    char       sentence[128];                   /* holds copy of complete sentence */
-    unsigned int         filters;               /* bitmask of sentences we will be listening for */
+    gsv_data_t      *GsvDataGlonass;                 /* GLONASS GSV data */
+    gsv_data_t      *GsvDataGps;                     /* GPS GSV data */
+    gll_data_t      *GllDataGn;                      /* Combined GPS and GLONASS GLL data */
+    rmc_data_t      *RmcDataGn;                      /* Combined GPS and GLONASS RMC data */
+    vtg_data_t      *VtgDataGn;                      /* Combined GPS and GLONASS VTG data */
+    gga_data_t      *GgaDataGn;                      /* Combined GPS and GLONASS GGA data */
+    gsa_data_t      *GsaDataGn;                      /* Combined GPS and GLONASS GSA data */
+    txt_data_t      *TxtDataGn;                      /* Combined GPS and GLONASS GSA data */
+    char            error_message[256];              /* buffer for error messages */
+    char            sentence[128];                   /* holds copy of complete sentence */
+    unsigned int    filters;                         /* bitmask of sentences we will be listening for */
 } gps_data_t;
 
 
