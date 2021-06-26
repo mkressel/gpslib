@@ -128,6 +128,21 @@ typedef struct {
     char                message[128][100];           /* 100 messages of 128 chars each */
 } txt_data_t;
 
+/* all combined into one struct */
+typedef struct {
+    gsv_data_t GsvDataGlonass;          /* GLONASS GSV data */
+    gsv_data_t GsvDataGps;              /* GPS GSV data */
+    gll_data_t GllDataGn;               /* Combined GPS and GLONASS GLL data */
+    rmc_data_t RmcDataGn;               /* Combined GPS and GLONASS RMC data */
+    vtg_data_t VtgDataGn;               /* Combined GPS and GLONASS VTG data */
+    gga_data_t GgaDataGn;               /* Combined GPS and GLONASS GGA data */
+    gsa_data_t GsaDataGn;               /* Combined GPS and GLONASS GSA data */
+    txt_data_t TxtDataGn;               /* Combined GPS and GLONASS GSA data */
+} gps_data_t;
+
+
+int gps_open();
+int gps_read(char *);
 
 int checksum_valid(char *);
 int hex2int(char *);
@@ -143,13 +158,13 @@ int parse_gga(char *, gga_data_t *, int);
 int parse_gsa(char *, gsa_data_t *, int);
 int parse_txt(char *, txt_data_t *, int);
 
-void print_gsv(gsv_data_t);
-void print_gll(gll_data_t);
-void print_rmc(rmc_data_t);
-void print_vtg(vtg_data_t);
-void print_gga(gga_data_t);
-void print_gsa(gsa_data_t);
-void print_txt(txt_data_t);
+void print_gsv();
+void print_gll();
+void print_rmc();
+void print_vtg();
+void print_gga();
+void print_gsa();
+void print_txt();
 
 
 int get_prn_number(int, int);

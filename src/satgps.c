@@ -12,16 +12,22 @@
 
 /* globals */
 
-/* GSV Data */
-gsv_data_t GsvDataGlonass;          /* GLONASS GSV data */
-gsv_data_t GsvDataGps;              /* GPS GSV data */
-gll_data_t GllDataGn;               /* Combined GPS and GLONASS GLL data */
-rmc_data_t RmcDataGn;               /* Combined GPS and GLONASS RMC data */
-vtg_data_t VtgDataGn;               /* Combined GPS and GLONASS VTG data */
-gga_data_t GgaDataGn;               /* Combined GPS and GLONASS GGA data */
-gsa_data_t GsaDataGn;               /* Combined GPS and GLONASS GSA data */
-txt_data_t TxtDataGn;               /* Combined GPS and GLONASS GSA data */
+/* GPS Data */
+gps_data_t GpsData;
 
+/* opens port to GPS device for reading */
+
+int gps_open() {
+    if (serial_open() < 0) {
+        return -1;
+    } else {
+        return 0;
+    }
+}
+
+int gps_read(char *buffer) {
+    return serial_readln(buffer);
+}
 
 /* Parse NMEA sentences
  *
@@ -33,49 +39,49 @@ int parse_sentence(char *buffer) {
 
     /* GLONASS GSV - $GLGSV */
     if (strncmp(buffer, NMEA_PREFIX_GLGSV, 5) == 0) {
-        parse_gsv(buffer, &GsvDataGlonass, GLGSV_MESSAGE);
+        parse_gsv(buffer, &GpsData.GsvDataGlonass, GLGSV_MESSAGE);
         return GLGSV_MESSAGE;
     }
 
     /* GPS GSV - $GPGSV */
     if (strncmp(buffer, NMEA_PREFIX_GPGSV, 5) == 0) {
-        parse_gsv(buffer, &GsvDataGps, GPGSV_MESSAGE);
+        parse_gsv(buffer, &GpsData.GsvDataGps, GPGSV_MESSAGE);
         return GPGSV_MESSAGE;
     }
 
     /* Combined GPS and GLONASS - $GNGLL */
     if (strncmp(buffer, NMEA_PREFIX_GNGLL, 5) == 0) {
-        parse_gll(buffer, &GllDataGn, GNGLL_MESSAGE);
+        parse_gll(buffer, &GpsData.GllDataGn, GNGLL_MESSAGE);
         return GNGLL_MESSAGE;
     }
 
     /* Combined GPS and GLONASS - $GNRMC */
     if (strncmp(buffer, NMEA_PREFIX_GNRMC, 5) == 0) {
-        parse_rmc(buffer, &RmcDataGn, GNRMC_MESSAGE);
+        parse_rmc(buffer, &GpsData.RmcDataGn, GNRMC_MESSAGE);
         return GNRMC_MESSAGE;
     }
 
     /* Combined GPS and GLONASS - $GNVTG */
     if (strncmp(buffer, NMEA_PREFIX_GNVTG, 5) == 0) {
-        parse_vtg(buffer, &VtgDataGn, GNVTG_MESSAGE);
+        parse_vtg(buffer, &GpsData.VtgDataGn, GNVTG_MESSAGE);
         return GNVTG_MESSAGE;
     }
 
     /* Combined GPS and GLONASS - $GNGGA */
     if (strncmp(buffer, NMEA_PREFIX_GNGGA, 5) == 0) {
-        parse_gga(buffer, &GgaDataGn, GNGGA_MESSAGE);
+        parse_gga(buffer, &GpsData.GgaDataGn, GNGGA_MESSAGE);
         return GNGGA_MESSAGE;
     }
 
     /* Combined GPS and GLONASS - $GNGSA */
     if (strncmp(buffer, NMEA_PREFIX_GNGSA, 5) == 0) {
-        parse_gsa(buffer, &GsaDataGn, GNGSA_MESSAGE);
+        parse_gsa(buffer, &GpsData.GsaDataGn, GNGSA_MESSAGE);
         return GNGSA_MESSAGE;
     }
 
     /* Combined GPS and GLONASS - $GNTXT */
     if (strncmp(buffer, NMEA_PREFIX_GNTXT, 5) == 0) {
-        parse_txt(buffer, &TxtDataGn, GNTXT_MESSAGE);
+        parse_txt(buffer, &GpsData.TxtDataGn, GNTXT_MESSAGE);
         return GNTXT_MESSAGE;
     }
 
@@ -550,69 +556,69 @@ int parse_txt(char *buffer, txt_data_t *TxtData, int txt_type) {
     return 0;
 }
 
-void print_txt(txt_data_t TxtData) {
+void print_txt() {
     int i;
     printf("===  Current TXT data ===\n");
     // sentence numbers start at 1
-    for(i=1;i<=TxtData.num_sentences;i++) {
+    for(i=1;i<=GpsData.TxtDataGn.num_sentences;i++) {
         printf("TXT Message %d\n", i);
-        printf("Text ID: %d\n",TxtData.text_id[i]);
-        printf("Message: %s\n",TxtData.message[i]);
+        printf("Text ID: %d\n",GpsData.TxtDataGn.text_id[i]);
+        printf("Message: %s\n",GpsData.TxtDataGn.message[i]);
     }
 }
 
-void print_gsa(gsa_data_t GsaData) {
+void print_gsa() {
 
     int i;
     printf("===  Current GSA data ===\n");
-    printf("Mode 1: %d\n", GsaData.mode_1);
-    printf("Mode 2: %d\n", GsaData.mode_2);
+    printf("Mode 1: %d\n", GpsData.GsaDataGn.mode_1);
+    printf("Mode 2: %d\n", GpsData.GsaDataGn.mode_2);
     for (i = 0; i < 12; i++) {
-        printf("PRN Number: %d\n", GsaData.prn_number[i]);
+        printf("PRN Number: %d\n", GpsData.GsaDataGn.prn_number[i]);
     }
-    printf("PDOP: %.6f\n", GsaData.PDOP);
-    printf("HDOP: %.6f\n", GsaData.HDOP);
-    printf("VDOP: %.6f\n", GsaData.VDOP);
+    printf("PDOP: %.6f\n", GpsData.GsaDataGn.PDOP);
+    printf("HDOP: %.6f\n", GpsData.GsaDataGn.HDOP);
+    printf("VDOP: %.6f\n", GpsData.GsaDataGn.VDOP);
 
 }
 
 
-void print_gga(gga_data_t GgaData) {
+void print_gga() {
     printf("===  Current GGA data ===\n");
-    printf("UTC Time string: %s\n", GgaData.utc_time_string);
-    printf("UTC Time Seconds: %d Milliseconds %d\n", GgaData.utc_time.tv_sec, GgaData.utc_time.tv_usec);
-    printf("Latitude: %.6f\n", GgaData.latitude);
-    printf("Longitude: %.6f\n", GgaData.longitude);
-    printf("GPS quality: %d\n", GgaData.gps_quality);
-    printf("Number SVs: %d\n", GgaData.number_svs);
-    printf("HDOP: %.6f\n", GgaData.HDOP);
-    printf("Orthometric height: %.6f\n", GgaData.orthometric_height);
-    printf("Geoid separation: %.6f\n", GgaData.geoid_separation);
-    printf("Age of differential: %.6f\n", GgaData.age_of_differential);
-    printf("Reference id: %d\n", GgaData.reference_id);
+    printf("UTC Time string: %s\n", GpsData.GgaDataGn.utc_time_string);
+    printf("UTC Time Seconds: %d Milliseconds %d\n", GpsData.GgaDataGn.utc_time.tv_sec, GpsData.GgaDataGn.utc_time.tv_usec);
+    printf("Latitude: %.6f\n", GpsData.GgaDataGn.latitude);
+    printf("Longitude: %.6f\n", GpsData.GgaDataGn.longitude);
+    printf("GPS quality: %d\n", GpsData.GgaDataGn.gps_quality);
+    printf("Number SVs: %d\n", GpsData.GgaDataGn.number_svs);
+    printf("HDOP: %.6f\n", GpsData.GgaDataGn.HDOP);
+    printf("Orthometric height: %.6f\n", GpsData.GgaDataGn.orthometric_height);
+    printf("Geoid separation: %.6f\n", GpsData.GgaDataGn.geoid_separation);
+    printf("Age of differential: %.6f\n", GpsData.GgaDataGn.age_of_differential);
+    printf("Reference id: %d\n", GpsData.GgaDataGn.reference_id);
 
 }
 
 
-void print_vtg(vtg_data_t VtgData) {
+void print_vtg() {
     printf("===  Current VTG data ===\n");
-    printf("Track, degrees true: %.6f\n", VtgData.track_true);
-    printf("Track, degrees magnetic: %.6f\n", VtgData.track_magnetic);
-    printf("Speed in m/s: %.6f\n", VtgData.speed);
+    printf("Track, degrees true: %.6f\n", GpsData.VtgDataGn.track_true);
+    printf("Track, degrees magnetic: %.6f\n", GpsData.VtgDataGn.track_magnetic);
+    printf("Speed in m/s: %.6f\n", GpsData.VtgDataGn.speed);
 }
 
-void print_rmc(rmc_data_t RmcData) {
+void print_rmc() {
 
     printf("===  Current RMC data ===\n");
-    printf("Time string: %s\n", RmcData.utc_time_string);
-    printf("Latitude %.6f\n", RmcData.latitude);
-    printf("Longitude %.6f\n", RmcData.longitude);
-    printf("Speed in m/s: %.6f\n", RmcData.speed);
-    printf("Track angle: %.6f\n", RmcData.track_angle);
-    printf("UTC Date string: %s\n", RmcData.utc_date_string);
-    printf("UTC Date: %4d-%02d-%02d %02d:%02d:%02d\n", RmcData.utc_date.tm_year, RmcData.utc_date.tm_mon,
-           RmcData.utc_date.tm_mday, RmcData.utc_date.tm_hour, RmcData.utc_date.tm_min, RmcData.utc_date.tm_sec);
-    printf("Magnetic variation: %.6f\n", RmcData.magnetic_variation);
+    printf("Time string: %s\n", GpsData.RmcDataGn.utc_time_string);
+    printf("Latitude %.6f\n", GpsData.RmcDataGn.latitude);
+    printf("Longitude %.6f\n", GpsData.RmcDataGn.longitude);
+    printf("Speed in m/s: %.6f\n", GpsData.RmcDataGn.speed);
+    printf("Track angle: %.6f\n", GpsData.RmcDataGn.track_angle);
+    printf("UTC Date string: %s\n", GpsData.RmcDataGn.utc_date_string);
+    printf("UTC Date: %4d-%02d-%02d %02d:%02d:%02d\n", GpsData.RmcDataGn.utc_date.tm_year, GpsData.RmcDataGn.utc_date.tm_mon,
+           GpsData.RmcDataGn.utc_date.tm_mday, GpsData.RmcDataGn.utc_date.tm_hour, GpsData.RmcDataGn.utc_date.tm_min, GpsData.RmcDataGn.utc_date.tm_sec);
+    printf("Magnetic variation: %.6f\n", GpsData.RmcDataGn.magnetic_variation);
 
 }
 
@@ -644,29 +650,29 @@ int get_prn_number(int prn, int gsv_type) {
     }
 }
 
-void print_gsv(gsv_data_t GsvData) {
+void print_gsv() {
 
     int i;
     printf("===  Current GSV data ===\n");
-    printf("Total messages: %d\n", GsvData.total_messages);
-    printf("Message number: %d\n", GsvData.message_number);
-    printf("Satellites in view: %d\n", GsvData.satellites_in_view);
+    printf("Total messages: %d\n", GpsData.GsvDataGps.total_messages);
+    printf("Message number: %d\n", GpsData.GsvDataGps.message_number);
+    printf("Satellites in view: %d\n", GpsData.GsvDataGps.satellites_in_view);
 
-    for (i = 0; i < GsvData.satellites_in_view; i++) {
+    for (i = 0; i < GpsData.GsvDataGps.satellites_in_view; i++) {
         printf("\nSatellite number: %d\n", (i + 1));
-        printf("PRN number: %d\n", GsvData.gsv_sat[i].prn_number);
-        printf("Elevation: %d\n", GsvData.gsv_sat[i].elevation);
-        printf("Azimuth: %d\n", GsvData.gsv_sat[i].azimuth);
-        printf("Signal to noise dBm: %d\n", GsvData.gsv_sat[i].signal_to_noise);
+        printf("PRN number: %d\n", GpsData.GsvDataGps.gsv_sat[i].prn_number);
+        printf("Elevation: %d\n", GpsData.GsvDataGps.gsv_sat[i].elevation);
+        printf("Azimuth: %d\n", GpsData.GsvDataGps.gsv_sat[i].azimuth);
+        printf("Signal to noise dBm: %d\n", GpsData.GsvDataGps.gsv_sat[i].signal_to_noise);
     }
 }
 
-void print_gll(gll_data_t GllData) {
+void print_gll() {
     printf("===  Current GLL data ===\n");
-    printf("Latitude: %.6f\n", GllData.latitude);
-    printf("Longitude: %.6f\n", GllData.longitude);
-    printf("UTC Time Raw String: %s\n", GllData.utc_time_string);
-    printf("UTC Time Seconds: %d Milliseconds %d\n", GllData.utc_time.tv_sec, GllData.utc_time.tv_usec);
+    printf("Latitude: %.6f\n", GpsData.GllDataGn.latitude);
+    printf("Longitude: %.6f\n", GpsData.GllDataGn.longitude);
+    printf("UTC Time Raw String: %s\n", GpsData.GllDataGn.utc_time_string);
+    printf("UTC Time Seconds: %d Milliseconds %d\n", GpsData.GllDataGn.utc_time.tv_sec, GpsData.GllDataGn.utc_time.tv_usec);
 }
 
 int checksum_valid(char *string) {

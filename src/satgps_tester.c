@@ -13,16 +13,6 @@
 
 /* globals */
 
-/* GSV Data */
-extern gsv_data_t GsvDataGlonass;          /* GLONASS GSV data */
-extern gsv_data_t GsvDataGps;              /* GPS GSV data */
-extern gll_data_t GllDataGn;               /* Combined GPS and GLONASS GLL data */
-extern rmc_data_t RmcDataGn;               /* Combined GPS and GLONASS RMC data */
-extern vtg_data_t VtgDataGn;               /* Combined GPS and GLONASS VTG data */
-extern gga_data_t GgaDataGn;               /* Combined GPS and GLONASS GGA data */
-extern gsa_data_t GsaDataGn;               /* Combined GPS and GLONASS GSA data */
-extern txt_data_t TxtDataGn;               /* Combined GPS and GLONASS GSA data */
-
 
 
 int main(int argc, char **argv) {
@@ -32,43 +22,48 @@ int main(int argc, char **argv) {
     int nbytes;
     int gps_message_type;
 
-    if (serial_open() < 0) {
-        printf("Error: cannot open GPS port: %s\n", PORTNAME);
-        return -1;
-    }
+    /* Open GPS device for reading */
+    gps_open();
 
+    /* infinite read loop */
     while (1) {
-        nbytes = serial_readln(buffer);
+
+        /* read sentence from GPS device */
+        gps_read(buffer);
         strcpy(sentence,buffer);
+
+        /* make sure the data is valid before parsing */
         if (checksum_valid(buffer)) {
+
+            /* parse sentence */
             gps_message_type = parse_sentence(buffer);
+
+            /* choose action based on GPS message type */
             switch (gps_message_type) {
                 case GLGSV_MESSAGE:
-                    //print_gsv(GsvDataGlonass);
+                    //print_gsv();
                     break;
                 case GPGSV_MESSAGE:
-                    //print_gsv(GsvDataGps);
+                    //print_gsv();
                     break;
                 case GNGLL_MESSAGE:
-                    //print_gll(GllDataGn);
+                    //print_gll();
                     break;
                 case GNRMC_MESSAGE:
-                    //printf("%s\n",sentence);
-                    print_rmc(RmcDataGn);
+                    print_rmc();
                     break;
                 case GNVTG_MESSAGE :
-                    //printf("%s\n",sentence);
-                    //print_vtg(VtgDataGn);
+                    //print_vtg();
                     break;
                 case GNGGA_MESSAGE:
-                    //print_gga(GgaDataGn);
+                    //print_gga();
                     break;
                 case GNGSA_MESSAGE:
-                    //print_gsa(GsaDataGn);
+                    //print_gsa();
                     break;
                 case GNTXT_MESSAGE:
-                    /* Usually an error, so should always print */
-                    print_txt(TxtDataGn);
+                    /* Usually an error message, so print out */
+                    print_txt();
                     break;
                 default:
                     printf("Unknown sentence: %s\n", sentence);

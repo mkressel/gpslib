@@ -16,15 +16,24 @@ In the build/ folder run:
 
 		./gpslib_tester
 		
-The tester will print out all the data contained in the global variables (there are a lot.) The idea is to have all the data ready to use, and an application can query any of the GPS data at ant time. The data, once loaded, stays in memory until overwritten with newer data. 
+The tester will print out all the data contained in the global variables (there are a lot.) The idea is to have all the data ready to use, and an application can query any of the GPS data at ant time. 
+
+
+### Data Handling
+
+Data is loaded into a global variable of type **gps_data_t**. As NMEA sentences are parsed, the **gps_data_t** struct is filled with new data. The data remains until the variable is overwritten by a new parsed NMEA sentence.
 
 **Care should be taken to make sure the data is valid and current before using it in any location-sensitive project.** 
 
 Most GPS data sentences have time fields and/or is-valid flags, which can be used to validate data. GPS (I'm pretty sure) is not accurate enough to point a satellite on its own, but combined with data from other instruments, the GPS data in this library might be used to provide medium accuracy local coordinates with speed and (geocentric) vectors.
 
-It's my intent to use this GPS library to:
+The **gpslib_tester** executable shows how to interact with the library. 
 
-1. Build a cFS (NASA Core Flight System) application that sends GPS telemetry to the ground.
+*Please note: This is a work in progress so the code is changing often. Things will likely break*
+
+It's my intent to eventually use this GPS library to:
+
+1. Build a cFS (NASA Core Flight System) application that sends GPS telemetry from the onboard device to the ground.
 2. Interface with an SPA (Sun Pointing Algorithm) to accurately determine the direction of the sun based on time and (GPS) location. 
 		
 -MK
