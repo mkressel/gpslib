@@ -69,7 +69,7 @@ int parse_sentence(char *buffer) {
     if (strncmp(buffer, NMEA_PREFIX_GNGLL, 5) == 0) {
         printf("GNGLL\n");
         parse_gll(buffer, &GllDataGn, GNGLL_MESSAGE);
-        //print_gll(GllDataGn);
+        print_gll(GllDataGn);
         return 0;
     }
 
@@ -77,21 +77,21 @@ int parse_sentence(char *buffer) {
     if (strncmp(buffer, NMEA_PREFIX_GNRMC, 5) == 0) {
         printf("GNRMC\n");
         parse_rmc(buffer, &RmcDataGn, GNRMC_MESSAGE);
-        //print_rmc(RmcDataGn);
+        print_rmc(RmcDataGn);
         return 0;
     }
 
     /* Combined GPS and GLONASS - $GNVTG */
     if (strncmp(buffer, NMEA_PREFIX_GNVTG, 5) == 0) {
-        printf("GNRMC\n");
+        printf("GNVTG\n");
         parse_vtg(buffer, &VtgDataGn, GNVTG_MESSAGE);
-        //print_vtg(VtgDataGn);
+        print_vtg(VtgDataGn);
         return 0;
     }
 
     /* Combined GPS and GLONASS - $GNGGA */
     if (strncmp(buffer, NMEA_PREFIX_GNGGA, 5) == 0) {
-        printf("GNRMC\n");
+        printf("GNGGA\n");
         parse_gga(buffer, &GgaDataGn, GNGGA_MESSAGE);
         //print_gga(GgaDataGn);
         return 0;
@@ -101,7 +101,7 @@ int parse_sentence(char *buffer) {
     if (strncmp(buffer, NMEA_PREFIX_GNGSA, 5) == 0) {
         printf("GNGSA\n");
         parse_gsa(buffer, &GsaDataGn, GNGSA_MESSAGE);
-        //print_gsa(GsaDataGn);
+        print_gsa(GsaDataGn);
         return 0;
     }
 
@@ -109,7 +109,7 @@ int parse_sentence(char *buffer) {
     if (strncmp(buffer, NMEA_PREFIX_GNTXT, 5) == 0) {
         printf("GNTXT\n");
         parse_txt(buffer, &TxtDataGn, GNTXT_MESSAGE);
-        //print_txt(TxtDataGn);
+        print_txt(TxtDataGn);
         return 0;
     }
 
