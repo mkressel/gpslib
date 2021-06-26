@@ -8,7 +8,7 @@
 #include <stdlib.h>
 
 #include "serial.h"
-#include "gpslib.h"
+#include "satgps.h"
 
 /* globals */
 
@@ -25,7 +25,7 @@ txt_data_t TxtDataGn;               /* Combined GPS and GLONASS GSA data */
 
 /* Parse NMEA sentences
  *
- * Returns message number or -1 if it does not understand the sentence *.
+ * Returns message number or -1 if it does not understand the sentence
  *
  * */
 
@@ -33,9 +33,7 @@ int parse_sentence(char *buffer) {
 
     /* GLONASS GSV - $GLGSV */
     if (strncmp(buffer, NMEA_PREFIX_GLGSV, 5) == 0) {
-        //printf("GLGSV\n");
         parse_gsv(buffer, &GsvDataGlonass, GLGSV_MESSAGE);
-        //print_gsv(GsvDataGlonass);
         return GLGSV_MESSAGE;
     }
 

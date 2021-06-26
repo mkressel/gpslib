@@ -8,7 +8,7 @@
 #include <stdlib.h>
 
 #include "serial.h"
-#include "gpslib.h"
+#include "satgps.h"
 
 
 /* globals */
@@ -71,7 +71,7 @@ int main(int argc, char **argv) {
                     print_txt(TxtDataGn);
                     break;
                 default:
-                    printf("Unknown message type: %d\n", gps_message_type);
+                    printf("Unknown sentence: %s\n", sentence);
             }
         } else {
             printf("Checksum invalid for string: %s\n", buffer);

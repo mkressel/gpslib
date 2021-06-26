@@ -6,14 +6,14 @@ file(GLOB SERIAL_SRC
         )
 
 file(GLOB SATGPS_SRC
-        "src/gpslib.*"
+        "src/satgps.*"
         )
 
 file(GLOB SATTEST_SRC
-        "src/gpslib_tester.c"
+        "src/satgps_tester.c"
         )
 
-add_library(satgps SHARED ${SERIAL_SRC} ${SATGPS_SRC})
+add_library(satgps STATIC ${SERIAL_SRC} ${SATGPS_SRC})
 
 add_executable(satgps_tester ${SERIAL_SRC} ${SATGPS_SRC} ${SATTEST_SRC})
 

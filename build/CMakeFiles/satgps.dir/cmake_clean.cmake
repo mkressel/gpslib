@@ -1,8 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/satgps.dir/src/satgps.c.o"
   "CMakeFiles/satgps.dir/src/serial.c.o"
+  "libsatgps.a"
   "libsatgps.pdb"
-  "libsatgps.so"
 )
 
 # Per-language clean rules from dependency scanning.
