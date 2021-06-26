@@ -6,6 +6,26 @@
 
 #IncludeRegexTransform: 
 
+/home/pi/src/gps/satgps/src/satgps.c
+stdio.h
+-
+string.h
+-
+unistd.h
+-
+fcntl.h
+-
+termios.h
+-
+time.h
+-
+stdlib.h
+-
+serial.h
+/home/pi/src/gps/satgps/src/serial.h
+satgps.h
+/home/pi/src/gps/satgps/src/satgps.h
+
 /home/pi/src/gps/satgps/src/satgps.h
 stdio.h
 -

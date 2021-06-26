@@ -45,6 +45,7 @@ int main(int argc, char **argv) {
             //print_gsv();
             //print_gsv();
             //print_gll();
+
             print_rmc();
             //print_vtg();
             //print_gga();

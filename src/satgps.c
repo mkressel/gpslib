@@ -308,6 +308,15 @@ int parse_rmc(char *buffer, rmc_data_t *RmcData, int rmc_type) {
     RmcData->utc_date.tm_mday = atoi(day);
     RmcData->utc_date.tm_mon = atoi(month);
     RmcData->utc_date.tm_year = atoi(year) + 2000;
+
+    // parse time
+    strncpy(hours, field[1], 2);
+    hours[2] = '\0'; // null terminate
+    strncpy(minutes, field[1] + 2, 2);
+    minutes[2] = '\0'; // null terminate
+    strncpy(seconds, field[1] + 4, 2);
+    seconds[2] = '\0'; // null terminate
+    
     RmcData->utc_date.tm_hour = atoi(hours);
     RmcData->utc_date.tm_min = atoi(minutes);
     RmcData->utc_date.tm_sec = atoi(seconds);
