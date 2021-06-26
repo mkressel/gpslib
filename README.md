@@ -7,14 +7,18 @@ This will eventually be a static library that can be linked to from your project
 Right now, it compiles into an executable, "newgps" which parses the GPS output and loads it into variables which can be accessed accordingly.
 
 ### To Compile
-		cd build/
-		cmake ..
-		make
+
+In your source folder:
+
+    mkdir build/
+    cd build/
+	cmake ..
+	make
 
 ### To Test
 In the build/ folder run:
 
-		./gpslib_tester
+	./gpslib_tester
 		
 The tester will print out all the data contained in the global variables (there are a lot.) The idea is to have all the data ready to use, and an application can query any of the GPS data at ant time. 
 

@@ -3,7 +3,6 @@
 #include <fcntl.h>
 #include <termios.h>
 #include <errno.h>
-#include <stdlib.h>
 #include <string.h>
 
 
@@ -81,7 +80,7 @@ int serial_readln(char * buffer) {
     return strlen(buffer);
 }
 
-void serial_close() {
-    close(serial_fd);
+int serial_close() {
+    return close(serial_fd);
 }
 

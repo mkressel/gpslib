@@ -25,14 +25,14 @@
 #define NMEA_PREFIX_GNGSA           "$GNGSA"    /* GPS DOP and active satellites */
 #define NMEA_PREFIX_GNTXT           "$GNTXT"    /* GPS DOP and active satellites */
 
-#define GLGSV_MESSAGE       0x01    /* $GLGSV */
-#define GPGSV_MESSAGE       0x02    /* $GPGSV */
-#define GNGLL_MESSAGE       0x03    /* $GNGLL */
-#define GNRMC_MESSAGE       0x04    /* $GNRMC */
-#define GNVTG_MESSAGE       0x05    /* $GNVTG */
-#define GNGGA_MESSAGE       0x06    /* $GNGGA */
-#define GNGSA_MESSAGE       0x07    /* $GNGGA */
-#define GNTXT_MESSAGE       0x08    /* $GNGGA */
+#define GLGSV_MESSAGE       1<<0    /* $GLGSV */
+#define GPGSV_MESSAGE       1<<1    /* $GPGSV */
+#define GNGLL_MESSAGE       1<<2    /* $GNGLL */
+#define GNRMC_MESSAGE       1<<3    /* $GNRMC */
+#define GNVTG_MESSAGE       1<<4    /* $GNVTG */
+#define GNGGA_MESSAGE       1<<5    /* $GNGGA */
+#define GNGSA_MESSAGE       1<<6    /* $GNGGA */
+#define GNTXT_MESSAGE       1<<7    /* $GNGGA */
 
 /*
  * GSV satellite type
@@ -136,21 +136,27 @@ typedef struct {
  * */
 
 typedef struct {
-    gsv_data_t GsvDataGlonass;          /* GLONASS GSV data */
-    gsv_data_t GsvDataGps;              /* GPS GSV data */
-    gll_data_t GllDataGn;               /* Combined GPS and GLONASS GLL data */
-    rmc_data_t RmcDataGn;               /* Combined GPS and GLONASS RMC data */
-    vtg_data_t VtgDataGn;               /* Combined GPS and GLONASS VTG data */
-    gga_data_t GgaDataGn;               /* Combined GPS and GLONASS GGA data */
-    gsa_data_t GsaDataGn;               /* Combined GPS and GLONASS GSA data */
-    txt_data_t TxtDataGn;               /* Combined GPS and GLONASS GSA data */
-    char        error_message[256];     /* buffer for error messages */
+    gsv_data_t *GsvDataGlonass;                 /* GLONASS GSV data */
+    gsv_data_t *GsvDataGps;                     /* GPS GSV data */
+    gll_data_t *GllDataGn;                      /* Combined GPS and GLONASS GLL data */
+    rmc_data_t *RmcDataGn;                      /* Combined GPS and GLONASS RMC data */
+    vtg_data_t *VtgDataGn;                      /* Combined GPS and GLONASS VTG data */
+    gga_data_t *GgaDataGn;                      /* Combined GPS and GLONASS GGA data */
+    gsa_data_t *GsaDataGn;                      /* Combined GPS and GLONASS GSA data */
+    txt_data_t *TxtDataGn;                      /* Combined GPS and GLONASS GSA data */
+    char       error_message[256];              /* buffer for error messages */
+    char       sentence[128];                   /* holds copy of complete sentence */
+    unsigned int         filters;               /* bitmask of sentences we will be listening for */
 } gps_data_t;
 
 
 int gps_open();
+int gps_close();
 int gps_read(char *);
 void gps_get_error(char *);
+void gps_set_filters(int);
+void gps_clear_data();
+int gps_is_filtered(int);
 
 
 int checksum_valid(char *);
@@ -158,22 +164,24 @@ int hex2int(char *);
 int hexchar2int(char);
 int parse_fields(char *, char **, int);
 
+int prefix_valid(char *);
 int parse_sentence(char *);
-int parse_gsv(char *, gsv_data_t *, int);
-int parse_gll(char *, gll_data_t *, int);
-int parse_rmc(char *, rmc_data_t *, int);
-int parse_vtg(char *, vtg_data_t *, int);
-int parse_gga(char *, gga_data_t *, int);
-int parse_gsa(char *, gsa_data_t *, int);
-int parse_txt(char *, txt_data_t *, int);
+int parse_gsv(char *, int);
+int parse_gll(char *);
+int parse_rmc(char *);
+int parse_vtg(char *);
+int parse_gga(char *);
+int parse_gsa(char *);
+int parse_txt(char *);
 
-void print_gsv();
+void print_gsv(int);
 void print_gll();
 void print_rmc();
 void print_vtg();
 void print_gga();
 void print_gsa();
 void print_txt();
+void print_binary(unsigned int);
 
 
 int get_prn_number(int, int);

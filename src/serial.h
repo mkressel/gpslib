@@ -14,6 +14,6 @@
 
 // returns -1 if error, otherwise 0
 int serial_open();
-void serial_close();
+int serial_close();
 int serial_readln(char *);
 
