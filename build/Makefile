@@ -136,62 +136,62 @@ satgps_tester/fast:
 	$(MAKE) -f CMakeFiles/satgps_tester.dir/build.make CMakeFiles/satgps_tester.dir/build
 .PHONY : satgps_tester/fast
 
-src/gpslib.o: src/gpslib.c.o
+src/satgps.o: src/satgps.c.o
 
-.PHONY : src/gpslib.o
-
-# target to build an object file
-src/gpslib.c.o:
-	$(MAKE) -f CMakeFiles/satgps.dir/build.make CMakeFiles/satgps.dir/src/gpslib.c.o
-	$(MAKE) -f CMakeFiles/satgps_tester.dir/build.make CMakeFiles/satgps_tester.dir/src/gpslib.c.o
-.PHONY : src/gpslib.c.o
-
-src/gpslib.i: src/gpslib.c.i
-
-.PHONY : src/gpslib.i
-
-# target to preprocess a source file
-src/gpslib.c.i:
-	$(MAKE) -f CMakeFiles/satgps.dir/build.make CMakeFiles/satgps.dir/src/gpslib.c.i
-	$(MAKE) -f CMakeFiles/satgps_tester.dir/build.make CMakeFiles/satgps_tester.dir/src/gpslib.c.i
-.PHONY : src/gpslib.c.i
-
-src/gpslib.s: src/gpslib.c.s
-
-.PHONY : src/gpslib.s
-
-# target to generate assembly for a file
-src/gpslib.c.s:
-	$(MAKE) -f CMakeFiles/satgps.dir/build.make CMakeFiles/satgps.dir/src/gpslib.c.s
-	$(MAKE) -f CMakeFiles/satgps_tester.dir/build.make CMakeFiles/satgps_tester.dir/src/gpslib.c.s
-.PHONY : src/gpslib.c.s
-
-src/gpslib_tester.o: src/gpslib_tester.c.o
-
-.PHONY : src/gpslib_tester.o
+.PHONY : src/satgps.o
 
 # target to build an object file
-src/gpslib_tester.c.o:
-	$(MAKE) -f CMakeFiles/satgps_tester.dir/build.make CMakeFiles/satgps_tester.dir/src/gpslib_tester.c.o
-.PHONY : src/gpslib_tester.c.o
+src/satgps.c.o:
+	$(MAKE) -f CMakeFiles/satgps.dir/build.make CMakeFiles/satgps.dir/src/satgps.c.o
+	$(MAKE) -f CMakeFiles/satgps_tester.dir/build.make CMakeFiles/satgps_tester.dir/src/satgps.c.o
+.PHONY : src/satgps.c.o
 
-src/gpslib_tester.i: src/gpslib_tester.c.i
+src/satgps.i: src/satgps.c.i
 
-.PHONY : src/gpslib_tester.i
+.PHONY : src/satgps.i
 
 # target to preprocess a source file
-src/gpslib_tester.c.i:
-	$(MAKE) -f CMakeFiles/satgps_tester.dir/build.make CMakeFiles/satgps_tester.dir/src/gpslib_tester.c.i
-.PHONY : src/gpslib_tester.c.i
+src/satgps.c.i:
+	$(MAKE) -f CMakeFiles/satgps.dir/build.make CMakeFiles/satgps.dir/src/satgps.c.i
+	$(MAKE) -f CMakeFiles/satgps_tester.dir/build.make CMakeFiles/satgps_tester.dir/src/satgps.c.i
+.PHONY : src/satgps.c.i
 
-src/gpslib_tester.s: src/gpslib_tester.c.s
+src/satgps.s: src/satgps.c.s
 
-.PHONY : src/gpslib_tester.s
+.PHONY : src/satgps.s
 
 # target to generate assembly for a file
-src/gpslib_tester.c.s:
-	$(MAKE) -f CMakeFiles/satgps_tester.dir/build.make CMakeFiles/satgps_tester.dir/src/gpslib_tester.c.s
-.PHONY : src/gpslib_tester.c.s
+src/satgps.c.s:
+	$(MAKE) -f CMakeFiles/satgps.dir/build.make CMakeFiles/satgps.dir/src/satgps.c.s
+	$(MAKE) -f CMakeFiles/satgps_tester.dir/build.make CMakeFiles/satgps_tester.dir/src/satgps.c.s
+.PHONY : src/satgps.c.s
+
+src/satgps_tester.o: src/satgps_tester.c.o
+
+.PHONY : src/satgps_tester.o
+
+# target to build an object file
+src/satgps_tester.c.o:
+	$(MAKE) -f CMakeFiles/satgps_tester.dir/build.make CMakeFiles/satgps_tester.dir/src/satgps_tester.c.o
+.PHONY : src/satgps_tester.c.o
+
+src/satgps_tester.i: src/satgps_tester.c.i
+
+.PHONY : src/satgps_tester.i
+
+# target to preprocess a source file
+src/satgps_tester.c.i:
+	$(MAKE) -f CMakeFiles/satgps_tester.dir/build.make CMakeFiles/satgps_tester.dir/src/satgps_tester.c.i
+.PHONY : src/satgps_tester.c.i
+
+src/satgps_tester.s: src/satgps_tester.c.s
+
+.PHONY : src/satgps_tester.s
+
+# target to generate assembly for a file
+src/satgps_tester.c.s:
+	$(MAKE) -f CMakeFiles/satgps_tester.dir/build.make CMakeFiles/satgps_tester.dir/src/satgps_tester.c.s
+.PHONY : src/satgps_tester.c.s
 
 src/serial.o: src/serial.c.o
 
@@ -233,12 +233,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... satgps"
 	@echo "... satgps_tester"
-	@echo "... src/gpslib.o"
-	@echo "... src/gpslib.i"
-	@echo "... src/gpslib.s"
-	@echo "... src/gpslib_tester.o"
-	@echo "... src/gpslib_tester.i"
-	@echo "... src/gpslib_tester.s"
+	@echo "... src/satgps.o"
+	@echo "... src/satgps.i"
+	@echo "... src/satgps.s"
+	@echo "... src/satgps_tester.o"
+	@echo "... src/satgps_tester.i"
+	@echo "... src/satgps_tester.s"
 	@echo "... src/serial.o"
 	@echo "... src/serial.i"
 	@echo "... src/serial.s"

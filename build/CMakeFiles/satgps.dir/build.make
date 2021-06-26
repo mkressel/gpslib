@@ -70,29 +70,29 @@ CMakeFiles/satgps.dir/src/serial.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/satgps.dir/src/serial.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/pi/src/gps/satgps/src/serial.c -o CMakeFiles/satgps.dir/src/serial.c.s
 
-CMakeFiles/satgps.dir/src/gpslib.c.o: CMakeFiles/satgps.dir/flags.make
-CMakeFiles/satgps.dir/src/gpslib.c.o: ../src/gpslib.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/src/gps/satgps/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/satgps.dir/src/gpslib.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/satgps.dir/src/gpslib.c.o   -c /home/pi/src/gps/satgps/src/gpslib.c
+CMakeFiles/satgps.dir/src/satgps.c.o: CMakeFiles/satgps.dir/flags.make
+CMakeFiles/satgps.dir/src/satgps.c.o: ../src/satgps.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/src/gps/satgps/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/satgps.dir/src/satgps.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/satgps.dir/src/satgps.c.o   -c /home/pi/src/gps/satgps/src/satgps.c
 
-CMakeFiles/satgps.dir/src/gpslib.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/satgps.dir/src/gpslib.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/pi/src/gps/satgps/src/gpslib.c > CMakeFiles/satgps.dir/src/gpslib.c.i
+CMakeFiles/satgps.dir/src/satgps.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/satgps.dir/src/satgps.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/pi/src/gps/satgps/src/satgps.c > CMakeFiles/satgps.dir/src/satgps.c.i
 
-CMakeFiles/satgps.dir/src/gpslib.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/satgps.dir/src/gpslib.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/pi/src/gps/satgps/src/gpslib.c -o CMakeFiles/satgps.dir/src/gpslib.c.s
+CMakeFiles/satgps.dir/src/satgps.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/satgps.dir/src/satgps.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/pi/src/gps/satgps/src/satgps.c -o CMakeFiles/satgps.dir/src/satgps.c.s
 
 # Object files for target satgps
 satgps_OBJECTS = \
 "CMakeFiles/satgps.dir/src/serial.c.o" \
-"CMakeFiles/satgps.dir/src/gpslib.c.o"
+"CMakeFiles/satgps.dir/src/satgps.c.o"
 
 # External object files for target satgps
 satgps_EXTERNAL_OBJECTS =
 
 libsatgps.so: CMakeFiles/satgps.dir/src/serial.c.o
-libsatgps.so: CMakeFiles/satgps.dir/src/gpslib.c.o
+libsatgps.so: CMakeFiles/satgps.dir/src/satgps.c.o
 libsatgps.so: CMakeFiles/satgps.dir/build.make
 libsatgps.so: CMakeFiles/satgps.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/src/gps/satgps/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C shared library libsatgps.so"

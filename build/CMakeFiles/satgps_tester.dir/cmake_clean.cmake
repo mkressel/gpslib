@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/satgps_tester.dir/src/gpslib.c.o"
-  "CMakeFiles/satgps_tester.dir/src/gpslib_tester.c.o"
+  "CMakeFiles/satgps_tester.dir/src/satgps.c.o"
+  "CMakeFiles/satgps_tester.dir/src/satgps_tester.c.o"
   "CMakeFiles/satgps_tester.dir/src/serial.c.o"
   "satgps_tester"
   "satgps_tester.pdb"

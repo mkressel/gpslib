@@ -70,44 +70,44 @@ CMakeFiles/satgps_tester.dir/src/serial.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/satgps_tester.dir/src/serial.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/pi/src/gps/satgps/src/serial.c -o CMakeFiles/satgps_tester.dir/src/serial.c.s
 
-CMakeFiles/satgps_tester.dir/src/gpslib.c.o: CMakeFiles/satgps_tester.dir/flags.make
-CMakeFiles/satgps_tester.dir/src/gpslib.c.o: ../src/gpslib.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/src/gps/satgps/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/satgps_tester.dir/src/gpslib.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/satgps_tester.dir/src/gpslib.c.o   -c /home/pi/src/gps/satgps/src/gpslib.c
+CMakeFiles/satgps_tester.dir/src/satgps.c.o: CMakeFiles/satgps_tester.dir/flags.make
+CMakeFiles/satgps_tester.dir/src/satgps.c.o: ../src/satgps.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/src/gps/satgps/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/satgps_tester.dir/src/satgps.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/satgps_tester.dir/src/satgps.c.o   -c /home/pi/src/gps/satgps/src/satgps.c
 
-CMakeFiles/satgps_tester.dir/src/gpslib.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/satgps_tester.dir/src/gpslib.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/pi/src/gps/satgps/src/gpslib.c > CMakeFiles/satgps_tester.dir/src/gpslib.c.i
+CMakeFiles/satgps_tester.dir/src/satgps.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/satgps_tester.dir/src/satgps.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/pi/src/gps/satgps/src/satgps.c > CMakeFiles/satgps_tester.dir/src/satgps.c.i
 
-CMakeFiles/satgps_tester.dir/src/gpslib.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/satgps_tester.dir/src/gpslib.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/pi/src/gps/satgps/src/gpslib.c -o CMakeFiles/satgps_tester.dir/src/gpslib.c.s
+CMakeFiles/satgps_tester.dir/src/satgps.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/satgps_tester.dir/src/satgps.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/pi/src/gps/satgps/src/satgps.c -o CMakeFiles/satgps_tester.dir/src/satgps.c.s
 
-CMakeFiles/satgps_tester.dir/src/gpslib_tester.c.o: CMakeFiles/satgps_tester.dir/flags.make
-CMakeFiles/satgps_tester.dir/src/gpslib_tester.c.o: ../src/gpslib_tester.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/src/gps/satgps/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/satgps_tester.dir/src/gpslib_tester.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/satgps_tester.dir/src/gpslib_tester.c.o   -c /home/pi/src/gps/satgps/src/gpslib_tester.c
+CMakeFiles/satgps_tester.dir/src/satgps_tester.c.o: CMakeFiles/satgps_tester.dir/flags.make
+CMakeFiles/satgps_tester.dir/src/satgps_tester.c.o: ../src/satgps_tester.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/src/gps/satgps/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/satgps_tester.dir/src/satgps_tester.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/satgps_tester.dir/src/satgps_tester.c.o   -c /home/pi/src/gps/satgps/src/satgps_tester.c
 
-CMakeFiles/satgps_tester.dir/src/gpslib_tester.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/satgps_tester.dir/src/gpslib_tester.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/pi/src/gps/satgps/src/gpslib_tester.c > CMakeFiles/satgps_tester.dir/src/gpslib_tester.c.i
+CMakeFiles/satgps_tester.dir/src/satgps_tester.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/satgps_tester.dir/src/satgps_tester.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/pi/src/gps/satgps/src/satgps_tester.c > CMakeFiles/satgps_tester.dir/src/satgps_tester.c.i
 
-CMakeFiles/satgps_tester.dir/src/gpslib_tester.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/satgps_tester.dir/src/gpslib_tester.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/pi/src/gps/satgps/src/gpslib_tester.c -o CMakeFiles/satgps_tester.dir/src/gpslib_tester.c.s
+CMakeFiles/satgps_tester.dir/src/satgps_tester.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/satgps_tester.dir/src/satgps_tester.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/pi/src/gps/satgps/src/satgps_tester.c -o CMakeFiles/satgps_tester.dir/src/satgps_tester.c.s
 
 # Object files for target satgps_tester
 satgps_tester_OBJECTS = \
 "CMakeFiles/satgps_tester.dir/src/serial.c.o" \
-"CMakeFiles/satgps_tester.dir/src/gpslib.c.o" \
-"CMakeFiles/satgps_tester.dir/src/gpslib_tester.c.o"
+"CMakeFiles/satgps_tester.dir/src/satgps.c.o" \
+"CMakeFiles/satgps_tester.dir/src/satgps_tester.c.o"
 
 # External object files for target satgps_tester
 satgps_tester_EXTERNAL_OBJECTS =
 
 satgps_tester: CMakeFiles/satgps_tester.dir/src/serial.c.o
-satgps_tester: CMakeFiles/satgps_tester.dir/src/gpslib.c.o
-satgps_tester: CMakeFiles/satgps_tester.dir/src/gpslib_tester.c.o
+satgps_tester: CMakeFiles/satgps_tester.dir/src/satgps.c.o
+satgps_tester: CMakeFiles/satgps_tester.dir/src/satgps_tester.c.o
 satgps_tester: CMakeFiles/satgps_tester.dir/build.make
 satgps_tester: CMakeFiles/satgps_tester.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/src/gps/satgps/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C executable satgps_tester"

@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/pi/src/gps/satgps/src/gpslib.c" "/home/pi/src/gps/satgps/build/CMakeFiles/satgps_tester.dir/src/gpslib.c.o"
-  "/home/pi/src/gps/satgps/src/gpslib_tester.c" "/home/pi/src/gps/satgps/build/CMakeFiles/satgps_tester.dir/src/gpslib_tester.c.o"
+  "/home/pi/src/gps/satgps/src/satgps.c" "/home/pi/src/gps/satgps/build/CMakeFiles/satgps_tester.dir/src/satgps.c.o"
+  "/home/pi/src/gps/satgps/src/satgps_tester.c" "/home/pi/src/gps/satgps/build/CMakeFiles/satgps_tester.dir/src/satgps_tester.c.o"
   "/home/pi/src/gps/satgps/src/serial.c" "/home/pi/src/gps/satgps/build/CMakeFiles/satgps_tester.dir/src/serial.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")

@@ -23,7 +23,11 @@ gsa_data_t GsaDataGn;               /* Combined GPS and GLONASS GSA data */
 txt_data_t TxtDataGn;               /* Combined GPS and GLONASS GSA data */
 
 
-/* parse NMEA sentences */
+/* Parse NMEA sentences
+ *
+ * Returns message number or -1 if it does not understand the sentence *.
+ *
+ * */
 
 int parse_sentence(char *buffer) {
 
@@ -37,61 +41,47 @@ int parse_sentence(char *buffer) {
 
     /* GPS GSV - $GPGSV */
     if (strncmp(buffer, NMEA_PREFIX_GPGSV, 5) == 0) {
-        //printf("GPGSV\n");
         parse_gsv(buffer, &GsvDataGps, GPGSV_MESSAGE);
-        //print_gsv(GsvDataGps);
         return GPGSV_MESSAGE;
     }
 
     /* Combined GPS and GLONASS - $GNGLL */
     if (strncmp(buffer, NMEA_PREFIX_GNGLL, 5) == 0) {
-        //printf("GNGLL\n");
         parse_gll(buffer, &GllDataGn, GNGLL_MESSAGE);
-        //print_gll(GllDataGn);
         return GNGLL_MESSAGE;
     }
 
     /* Combined GPS and GLONASS - $GNRMC */
     if (strncmp(buffer, NMEA_PREFIX_GNRMC, 5) == 0) {
-        //printf("GNRMC\n");
         parse_rmc(buffer, &RmcDataGn, GNRMC_MESSAGE);
-        //print_rmc(RmcDataGn);
         return GNRMC_MESSAGE;
     }
 
     /* Combined GPS and GLONASS - $GNVTG */
     if (strncmp(buffer, NMEA_PREFIX_GNVTG, 5) == 0) {
-        //printf("GNVTG\n");
         parse_vtg(buffer, &VtgDataGn, GNVTG_MESSAGE);
-        //print_vtg(VtgDataGn);
         return GNVTG_MESSAGE;
     }
 
     /* Combined GPS and GLONASS - $GNGGA */
     if (strncmp(buffer, NMEA_PREFIX_GNGGA, 5) == 0) {
-        //printf("GNGGA\n");
         parse_gga(buffer, &GgaDataGn, GNGGA_MESSAGE);
-        //print_gga(GgaDataGn);
         return GNGGA_MESSAGE;
     }
 
     /* Combined GPS and GLONASS - $GNGSA */
     if (strncmp(buffer, NMEA_PREFIX_GNGSA, 5) == 0) {
-        //printf("GNGSA\n");
         parse_gsa(buffer, &GsaDataGn, GNGSA_MESSAGE);
-        //print_gsa(GsaDataGn);
         return GNGSA_MESSAGE;
     }
 
     /* Combined GPS and GLONASS - $GNTXT */
     if (strncmp(buffer, NMEA_PREFIX_GNTXT, 5) == 0) {
-        //printf("GNTXT\n");
         parse_txt(buffer, &TxtDataGn, GNTXT_MESSAGE);
-        //print_txt(TxtDataGn);
         return GNTXT_MESSAGE;
     }
 
-    printf("Unknown prefix: %s\n", buffer);
+    /* Unknown prefix */
     return -1;
 
 }

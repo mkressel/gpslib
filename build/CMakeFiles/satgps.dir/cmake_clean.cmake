@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/satgps.dir/src/gpslib.c.o"
+  "CMakeFiles/satgps.dir/src/satgps.c.o"
   "CMakeFiles/satgps.dir/src/serial.c.o"
   "libsatgps.pdb"
   "libsatgps.so"
