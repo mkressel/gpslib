@@ -1,0 +1,4 @@
+/Users/matt/mnt/satpi/src/gps/satgps/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/matt/mnt/satpi/src/gps/satgps/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/matt/mnt/satpi/src/gps/satgps/cmake-build-debug/CMakeFiles/satgps_tester.dir
+/Users/matt/mnt/satpi/src/gps/satgps/cmake-build-debug/CMakeFiles/satgps.dir

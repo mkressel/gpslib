@@ -29,7 +29,7 @@ int parse_sentence(char *buffer) {
 
     /* GLONASS GSV - $GLGSV */
     if (strncmp(buffer, NMEA_PREFIX_GLGSV, 5) == 0) {
-        printf("GLGSV\n");
+        //printf("GLGSV\n");
         parse_gsv(buffer, &GsvDataGlonass, GLGSV_MESSAGE);
         //print_gsv(GsvDataGlonass);
         return GLGSV_MESSAGE;
@@ -37,7 +37,7 @@ int parse_sentence(char *buffer) {
 
     /* GPS GSV - $GPGSV */
     if (strncmp(buffer, NMEA_PREFIX_GPGSV, 5) == 0) {
-        printf("GPGSV\n");
+        //printf("GPGSV\n");
         parse_gsv(buffer, &GsvDataGps, GPGSV_MESSAGE);
         //print_gsv(GsvDataGps);
         return GPGSV_MESSAGE;
@@ -45,7 +45,7 @@ int parse_sentence(char *buffer) {
 
     /* Combined GPS and GLONASS - $GNGLL */
     if (strncmp(buffer, NMEA_PREFIX_GNGLL, 5) == 0) {
-        printf("GNGLL\n");
+        //printf("GNGLL\n");
         parse_gll(buffer, &GllDataGn, GNGLL_MESSAGE);
         //print_gll(GllDataGn);
         return GNGLL_MESSAGE;
@@ -53,7 +53,7 @@ int parse_sentence(char *buffer) {
 
     /* Combined GPS and GLONASS - $GNRMC */
     if (strncmp(buffer, NMEA_PREFIX_GNRMC, 5) == 0) {
-        printf("GNRMC\n");
+        //printf("GNRMC\n");
         parse_rmc(buffer, &RmcDataGn, GNRMC_MESSAGE);
         //print_rmc(RmcDataGn);
         return GNRMC_MESSAGE;
@@ -61,7 +61,7 @@ int parse_sentence(char *buffer) {
 
     /* Combined GPS and GLONASS - $GNVTG */
     if (strncmp(buffer, NMEA_PREFIX_GNVTG, 5) == 0) {
-        printf("GNVTG\n");
+        //printf("GNVTG\n");
         parse_vtg(buffer, &VtgDataGn, GNVTG_MESSAGE);
         //print_vtg(VtgDataGn);
         return GNVTG_MESSAGE;
@@ -69,7 +69,7 @@ int parse_sentence(char *buffer) {
 
     /* Combined GPS and GLONASS - $GNGGA */
     if (strncmp(buffer, NMEA_PREFIX_GNGGA, 5) == 0) {
-        printf("GNGGA\n");
+        //printf("GNGGA\n");
         parse_gga(buffer, &GgaDataGn, GNGGA_MESSAGE);
         //print_gga(GgaDataGn);
         return GNGGA_MESSAGE;
@@ -77,7 +77,7 @@ int parse_sentence(char *buffer) {
 
     /* Combined GPS and GLONASS - $GNGSA */
     if (strncmp(buffer, NMEA_PREFIX_GNGSA, 5) == 0) {
-        printf("GNGSA\n");
+        //printf("GNGSA\n");
         parse_gsa(buffer, &GsaDataGn, GNGSA_MESSAGE);
         //print_gsa(GsaDataGn);
         return GNGSA_MESSAGE;
@@ -85,7 +85,7 @@ int parse_sentence(char *buffer) {
 
     /* Combined GPS and GLONASS - $GNTXT */
     if (strncmp(buffer, NMEA_PREFIX_GNTXT, 5) == 0) {
-        printf("GNTXT\n");
+        //printf("GNTXT\n");
         parse_txt(buffer, &TxtDataGn, GNTXT_MESSAGE);
         //print_txt(TxtDataGn);
         return GNTXT_MESSAGE;
@@ -173,6 +173,9 @@ int parse_gll(char *buffer, gll_data_t *GllData, int gll_type) {
     char hours[3];
     char minutes[3];
     char seconds[3];
+    char degrees[4];
+
+
     char milliseconds[16];
     char *eptr;
     char *field[GPS_MAX_FIELDS];
@@ -192,13 +195,21 @@ int parse_gll(char *buffer, gll_data_t *GllData, int gll_type) {
         return -1;
     }
 
-    GllData->latitude = strtod(field[1], &eptr) / 100.00;
+    strncpy(degrees, field[1], 2);
+    degrees[2] = '\0'; // null terminate
+    strcpy(minutes,field[1] + 2);
+
+    GllData->latitude = strtod(degrees, &eptr) + (strtod(minutes, &eptr) / 60.00);
     /* South is negative */
     if (strncmp(field[2], "S", 1) == 0) {
         GllData->latitude *= -1;
     }
 
-    GllData->longitude = strtod(field[3], &eptr) / 100.00;
+    strncpy(degrees, field[3], 3);
+    degrees[3] = '\0'; // null terminate
+    strcpy(minutes,field[3] + 3);
+
+    GllData->longitude =  strtod(degrees, &eptr) + (strtod(minutes, &eptr) / 60.00);
     /* West is negative */
     if (strncmp(field[4], "W", 1) == 0) {
         GllData->longitude *= -1;
@@ -246,6 +257,7 @@ int parse_rmc(char *buffer, rmc_data_t *RmcData, int rmc_type) {
     char hours[3];
     char minutes[3];
     char seconds[3];
+    char degrees[4];
 
     char *eptr;
     char *field[GPS_MAX_FIELDS];
@@ -267,21 +279,23 @@ int parse_rmc(char *buffer, rmc_data_t *RmcData, int rmc_type) {
 
     strcpy(RmcData->utc_time_string, field[1]);
 
-    // parse time
-    strncpy(hours, field[1], 2);
-    hours[2] = '\0'; // null terminate
-    strncpy(minutes, field[1] + 2, 2);
-    minutes[2] = '\0'; // null terminate
-    strncpy(seconds, field[1] + 4, 2);
-    seconds[2] = '\0'; // null terminate
+    strncpy(degrees, field[3], 2);
+    degrees[2] = '\0'; // null terminate
+    strcpy(minutes,field[3] + 2);
 
-    RmcData->latitude = strtod(field[3], &eptr) / 100.00;
+    RmcData->latitude = strtod(degrees, &eptr) + (strtod(minutes, &eptr) / 60.00);
+
     /* South is negative */
     if (strncmp(field[4], "S", 1) == 0) {
         RmcData->latitude *= -1;
     }
 
-    RmcData->longitude = strtod(field[5], &eptr) / 100.00;
+    strncpy(degrees, field[5], 3);
+    degrees[3] = '\0'; // null terminate
+    strcpy(minutes,field[5] + 3);
+
+    RmcData->longitude = strtod(degrees, &eptr) + (strtod(minutes, &eptr) / 60.00);
+
     /* West is negative */
     if (strncmp(field[6], "W", 1) == 0) {
         RmcData->longitude *= -1;
@@ -393,6 +407,7 @@ int parse_gga(char *buffer, gga_data_t *GgaData, int gga_type) {
     char hours[3];
     char minutes[3];
     char seconds[3];
+    char degrees[4];
     char milliseconds[16];
 
     //printf("%s\n", buffer);
@@ -417,12 +432,23 @@ int parse_gga(char *buffer, gga_data_t *GgaData, int gga_type) {
     GgaData->utc_time.tv_sec = (atoi(hours) * 3600) + (atoi(minutes) * 60) + atoi(seconds);
     GgaData->utc_time.tv_usec = atoi(milliseconds) * 1000;
 
-    GgaData->latitude = strtod(field[2], &eptr) / 100.0;
+
+    strncpy(degrees, field[2], 2);
+    degrees[2] = '\0'; // null terminate
+    strcpy(minutes,field[2] + 2);
+
+    GgaData->latitude = strtod(degrees, &eptr) + (strtod(minutes, &eptr) / 60.00);
+
     if (strncmp(field[3], "S", 1) == 0) {
         GgaData->latitude *= -1;
     }
 
-    GgaData->longitude = strtod(field[4], &eptr) / 100.0;
+    strncpy(degrees, field[4], 3);
+    degrees[3] = '\0'; // null terminate
+    strcpy(minutes,field[4] + 3);
+
+    GgaData->longitude = strtod(degrees, &eptr) + (strtod(minutes, &eptr) / 60.00);
+
     if (strncmp(field[5], "W", 1) == 0) {
         GgaData->longitude *= -1;
     }
@@ -538,6 +564,7 @@ int parse_txt(char *buffer, txt_data_t *TxtData, int txt_type) {
 
 void print_txt(txt_data_t TxtData) {
     int i;
+    printf("===  Current TXT data ===\n");
     // sentence numbers start at 1
     for(i=1;i<=TxtData.num_sentences;i++) {
         printf("TXT Message %d\n", i);
@@ -549,6 +576,7 @@ void print_txt(txt_data_t TxtData) {
 void print_gsa(gsa_data_t GsaData) {
 
     int i;
+    printf("===  Current GSA data ===\n");
     printf("Mode 1: %d\n", GsaData.mode_1);
     printf("Mode 2: %d\n", GsaData.mode_2);
     for (i = 0; i < 12; i++) {
@@ -562,6 +590,7 @@ void print_gsa(gsa_data_t GsaData) {
 
 
 void print_gga(gga_data_t GgaData) {
+    printf("===  Current GGA data ===\n");
     printf("UTC Time string: %s\n", GgaData.utc_time_string);
     printf("UTC Time Seconds: %d Milliseconds %d\n", GgaData.utc_time.tv_sec, GgaData.utc_time.tv_usec);
     printf("Latitude: %.6f\n", GgaData.latitude);
@@ -578,6 +607,7 @@ void print_gga(gga_data_t GgaData) {
 
 
 void print_vtg(vtg_data_t VtgData) {
+    printf("===  Current VTG data ===\n");
     printf("Track, degrees true: %.6f\n", VtgData.track_true);
     printf("Track, degrees magnetic: %.6f\n", VtgData.track_magnetic);
     printf("Speed in m/s: %.6f\n", VtgData.speed);
@@ -585,6 +615,7 @@ void print_vtg(vtg_data_t VtgData) {
 
 void print_rmc(rmc_data_t RmcData) {
 
+    printf("===  Current RMC data ===\n");
     printf("Time string: %s\n", RmcData.utc_time_string);
     printf("Latitude %.6f\n", RmcData.latitude);
     printf("Longitude %.6f\n", RmcData.longitude);

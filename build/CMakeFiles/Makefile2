@@ -44,10 +44,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/src/gps/newgps
+CMAKE_SOURCE_DIR = /home/pi/src/gps/satgps
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/src/gps/newgps/build
+CMAKE_BINARY_DIR = /home/pi/src/gps/satgps/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -76,14 +76,14 @@ clean: CMakeFiles/satgps_tester.dir/clean
 CMakeFiles/satgps.dir/all:
 	$(MAKE) -f CMakeFiles/satgps.dir/build.make CMakeFiles/satgps.dir/depend
 	$(MAKE) -f CMakeFiles/satgps.dir/build.make CMakeFiles/satgps.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/src/gps/newgps/build/CMakeFiles --progress-num=1,2,3 "Built target satgps"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/src/gps/satgps/build/CMakeFiles --progress-num=1,2,3 "Built target satgps"
 .PHONY : CMakeFiles/satgps.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/satgps.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/src/gps/newgps/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/src/gps/satgps/build/CMakeFiles 3
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/satgps.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/src/gps/newgps/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/src/gps/satgps/build/CMakeFiles 0
 .PHONY : CMakeFiles/satgps.dir/rule
 
 # Convenience name for target.
@@ -103,14 +103,14 @@ CMakeFiles/satgps.dir/clean:
 CMakeFiles/satgps_tester.dir/all:
 	$(MAKE) -f CMakeFiles/satgps_tester.dir/build.make CMakeFiles/satgps_tester.dir/depend
 	$(MAKE) -f CMakeFiles/satgps_tester.dir/build.make CMakeFiles/satgps_tester.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/src/gps/newgps/build/CMakeFiles --progress-num=4,5,6,7 "Built target satgps_tester"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/src/gps/satgps/build/CMakeFiles --progress-num=4,5,6,7 "Built target satgps_tester"
 .PHONY : CMakeFiles/satgps_tester.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/satgps_tester.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/src/gps/newgps/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/src/gps/satgps/build/CMakeFiles 4
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/satgps_tester.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/src/gps/newgps/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/src/gps/satgps/build/CMakeFiles 0
 .PHONY : CMakeFiles/satgps_tester.dir/rule
 
 # Convenience name for target.

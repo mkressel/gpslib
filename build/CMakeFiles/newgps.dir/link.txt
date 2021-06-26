@@ -1,1 +1,0 @@
-/usr/bin/cc    CMakeFiles/newgps.dir/src/newgps.c.o CMakeFiles/newgps.dir/src/serial.c.o  -o newgps 

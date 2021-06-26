@@ -1,1 +1,0 @@
-/usr/bin/cc -fPIC   -shared -Wl,-soname,libgpslib.so -o libgpslib.so CMakeFiles/gpslib.dir/src/serial.c.o CMakeFiles/gpslib.dir/src/gpslib.c.o 

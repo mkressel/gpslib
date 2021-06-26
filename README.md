@@ -8,6 +8,7 @@ Right now, it compiles into an executable, "newgps" which parses the GPS output 
 
 ### To Compile
 		cd build/
+		cmake ..
 		make
 
 ### To Test

@@ -28,6 +28,7 @@ extern txt_data_t TxtDataGn;               /* Combined GPS and GLONASS GSA data 
 int main(int argc, char **argv) {
     int sfd;
     char buffer[255];
+    char sentence[255];
     int nbytes;
     int gps_message_type;
 
@@ -38,31 +39,35 @@ int main(int argc, char **argv) {
 
     while (1) {
         nbytes = serial_readln(buffer);
+        strcpy(sentence,buffer);
         if (checksum_valid(buffer)) {
             gps_message_type = parse_sentence(buffer);
             switch (gps_message_type) {
                 case GLGSV_MESSAGE:
-                    print_gsv(GsvDataGlonass);
+                    //print_gsv(GsvDataGlonass);
                     break;
                 case GPGSV_MESSAGE:
-                    print_gsv(GsvDataGps);
+                    //print_gsv(GsvDataGps);
                     break;
                 case GNGLL_MESSAGE:
-                    print_gll(GllDataGn);
+                    //print_gll(GllDataGn);
                     break;
                 case GNRMC_MESSAGE:
+                    //printf("%s\n",sentence);
                     print_rmc(RmcDataGn);
                     break;
                 case GNVTG_MESSAGE :
-                    print_vtg(VtgDataGn);
+                    //printf("%s\n",sentence);
+                    //print_vtg(VtgDataGn);
                     break;
                 case GNGGA_MESSAGE:
-                    print_gga(GgaDataGn);
+                    //print_gga(GgaDataGn);
                     break;
                 case GNGSA_MESSAGE:
-                    print_gsa(GsaDataGn);
+                    //print_gsa(GsaDataGn);
                     break;
                 case GNTXT_MESSAGE:
+                    /* Usually an error, so should always print */
                     print_txt(TxtDataGn);
                     break;
                 default:
