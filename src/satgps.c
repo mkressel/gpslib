@@ -29,6 +29,13 @@ int gps_read(char *buffer) {
     return serial_readln(buffer);
 }
 
+/* copies the error message into error_string */
+void gps_get_error(char *error_string) {
+    strcpy(error_string,GpsData.error_message);
+}
+
+//void gps_do_error();
+
 /* Parse NMEA sentences
  *
  * Returns message number or -1 if it does not understand the sentence
@@ -39,50 +46,42 @@ int parse_sentence(char *buffer) {
 
     /* GLONASS GSV - $GLGSV */
     if (strncmp(buffer, NMEA_PREFIX_GLGSV, 5) == 0) {
-        parse_gsv(buffer, &GpsData.GsvDataGlonass, GLGSV_MESSAGE);
-        return GLGSV_MESSAGE;
+        return parse_gsv(buffer, &GpsData.GsvDataGlonass, GLGSV_MESSAGE);
     }
 
     /* GPS GSV - $GPGSV */
     if (strncmp(buffer, NMEA_PREFIX_GPGSV, 5) == 0) {
-        parse_gsv(buffer, &GpsData.GsvDataGps, GPGSV_MESSAGE);
-        return GPGSV_MESSAGE;
+        return parse_gsv(buffer, &GpsData.GsvDataGps, GPGSV_MESSAGE);
     }
 
     /* Combined GPS and GLONASS - $GNGLL */
     if (strncmp(buffer, NMEA_PREFIX_GNGLL, 5) == 0) {
-        parse_gll(buffer, &GpsData.GllDataGn, GNGLL_MESSAGE);
-        return GNGLL_MESSAGE;
+        return parse_gll(buffer, &GpsData.GllDataGn, GNGLL_MESSAGE);
     }
 
     /* Combined GPS and GLONASS - $GNRMC */
     if (strncmp(buffer, NMEA_PREFIX_GNRMC, 5) == 0) {
-        parse_rmc(buffer, &GpsData.RmcDataGn, GNRMC_MESSAGE);
-        return GNRMC_MESSAGE;
+        return parse_rmc(buffer, &GpsData.RmcDataGn, GNRMC_MESSAGE);
     }
 
     /* Combined GPS and GLONASS - $GNVTG */
     if (strncmp(buffer, NMEA_PREFIX_GNVTG, 5) == 0) {
-        parse_vtg(buffer, &GpsData.VtgDataGn, GNVTG_MESSAGE);
-        return GNVTG_MESSAGE;
+        return parse_vtg(buffer, &GpsData.VtgDataGn, GNVTG_MESSAGE);
     }
 
     /* Combined GPS and GLONASS - $GNGGA */
     if (strncmp(buffer, NMEA_PREFIX_GNGGA, 5) == 0) {
-        parse_gga(buffer, &GpsData.GgaDataGn, GNGGA_MESSAGE);
-        return GNGGA_MESSAGE;
+        return parse_gga(buffer, &GpsData.GgaDataGn, GNGGA_MESSAGE);
     }
 
     /* Combined GPS and GLONASS - $GNGSA */
     if (strncmp(buffer, NMEA_PREFIX_GNGSA, 5) == 0) {
-        parse_gsa(buffer, &GpsData.GsaDataGn, GNGSA_MESSAGE);
-        return GNGSA_MESSAGE;
+        return parse_gsa(buffer, &GpsData.GsaDataGn, GNGSA_MESSAGE);
     }
 
     /* Combined GPS and GLONASS - $GNTXT */
     if (strncmp(buffer, NMEA_PREFIX_GNTXT, 5) == 0) {
-        parse_txt(buffer, &GpsData.TxtDataGn, GNTXT_MESSAGE);
-        return GNTXT_MESSAGE;
+        return parse_txt(buffer, &GpsData.TxtDataGn, GNTXT_MESSAGE);
     }
 
     /* Unknown prefix */
@@ -112,11 +111,10 @@ int parse_gsv(char *buffer, gsv_data_t *GsvData, int gsv_type) {
     int processed_fields = 0;
     int i;
     char *field[GPS_MAX_FIELDS];
-    //printf("buffer: %s\n", buffer);
 
     num_fields = parse_fields(buffer, field, GPS_MAX_FIELDS);
     if (num_fields < 1) {
-        printf("Bad GSV parse of sentence: %s\n", buffer);
+        sprintf(GpsData.error_message,"Bad GSV parse of sentence: %s\n",buffer);
         return -1;
     }
 
@@ -173,11 +171,10 @@ int parse_gll(char *buffer, gll_data_t *GllData, int gll_type) {
     char milliseconds[16];
     char *eptr;
     char *field[GPS_MAX_FIELDS];
-    //printf("buffer: %s\n", buffer);
 
     num_fields = parse_fields(buffer, field, GPS_MAX_FIELDS);
     if (num_fields < 1) {
-        printf("Bad GLL parse of sentence: %s\n", buffer);
+        sprintf(GpsData.error_message,"Bad GLL parse of sentence: %s\n", buffer);
         return -1;
     }
 
@@ -255,11 +252,10 @@ int parse_rmc(char *buffer, rmc_data_t *RmcData, int rmc_type) {
 
     char *eptr;
     char *field[GPS_MAX_FIELDS];
-    //printf("buffer: %s\n", buffer);
 
     num_fields = parse_fields(buffer, field, GPS_MAX_FIELDS);
     if (num_fields < 1) {
-        printf("Bad RMC parse of sentence: %s\n", buffer);
+        sprintf(GpsData.error_message,"Bad RMC parse of sentence: %s\n", buffer);
         return -1;
     }
 
@@ -268,6 +264,7 @@ int parse_rmc(char *buffer, rmc_data_t *RmcData, int rmc_type) {
         RmcData->valid = 1;
     } else {
         RmcData->valid = 0;
+        sprintf(GpsData.error_message,"RMC Data invalid: %s\n", buffer);
         return -1;
     }
 
@@ -299,8 +296,6 @@ int parse_rmc(char *buffer, rmc_data_t *RmcData, int rmc_type) {
     RmcData->track_angle = strtod(field[8], &eptr);
 
     strcpy(RmcData->utc_date_string, field[9]);
-
-
 
     // parse date
     strncpy(day, field[9], 2);
@@ -341,12 +336,9 @@ int parse_vtg(char *buffer, vtg_data_t *VtgData, int vtg_type) {
     int num_fields;
     char *field[GPS_MAX_FIELDS];
     char *eptr;
-
-    //printf("%s\n", buffer);
-
     num_fields = parse_fields(buffer, field, GPS_MAX_FIELDS);
     if (num_fields < 1) {
-        printf("Bad VTG parse of sentence: %s\n", buffer);
+        sprintf(GpsData.error_message,"Bad VTG parse of sentence: %s\n", buffer);
         return -1;
     }
 
@@ -404,11 +396,9 @@ int parse_gga(char *buffer, gga_data_t *GgaData, int gga_type) {
     char degrees[4];
     char milliseconds[16];
 
-    //printf("%s\n", buffer);
-
     num_fields = parse_fields(buffer, field, GPS_MAX_FIELDS);
     if (num_fields < 1) {
-        printf("Bad GGA parse of sentence: %s\n", buffer);
+        sprintf(GpsData.error_message,"Bad GGA parse of sentence: %s\n", buffer);
         return -1;
     }
 
@@ -481,11 +471,9 @@ int parse_gsa(char *buffer, gsa_data_t *GsaData, int gsa_type) {
     char *field[GPS_MAX_FIELDS];
     char *eptr;
 
-    //printf("%s\n", buffer);
-
     num_fields = parse_fields(buffer, field, GPS_MAX_FIELDS);
     if (num_fields < 1) {
-        printf("Bad GLL parse of sentence: %s\n", buffer);
+        sprintf(GpsData.error_message,"Bad GLL parse of sentence: %s\n", buffer);
         return -1;
     }
 
@@ -495,7 +483,7 @@ int parse_gsa(char *buffer, gsa_data_t *GsaData, int gsa_type) {
     } else if (strncmp(field[1], "A", 1) == 0) {
         GsaData->mode_1 = 1;
     } else {
-        printf("Invalid GSA Mode 1: %s\n", field[1]);
+        sprintf(GpsData.error_message,"Invalid GSA Mode 1: %s\n", field[1]);
         return -1;
     }
 
@@ -529,12 +517,11 @@ int parse_txt(char *buffer, txt_data_t *TxtData, int txt_type) {
 
     int sentence_number, text_id;
 
-    //printf("%s\n", buffer);
     strcpy(temp_buffer,buffer);
 
     num_fields = parse_fields(buffer, field, GPS_MAX_FIELDS);
     if (num_fields < 1) {
-        printf("Bad TXT parse of sentence: %s\n", buffer);
+        sprintf(GpsData.error_message,"Bad TXT parse of sentence: %s\n", buffer);
         return -1;
     }
 
@@ -549,7 +536,7 @@ int parse_txt(char *buffer, txt_data_t *TxtData, int txt_type) {
         strcpy(TxtData->message[sentence_number],message);
         TxtData->text_id[sentence_number] = text_id;
     } else {
-        printf("Bad TXT sentence number: %d\n",sentence_number);
+        sprintf(GpsData.error_message,"Bad TXT sentence number: %d\n",sentence_number);
         return -1;
     }
 
@@ -645,7 +632,7 @@ int get_prn_number(int prn, int gsv_type) {
             return prn;
             break;
         default:
-            printf("Unknown GSV Type: %02x\n", gsv_type);
+            sprintf(GpsData.error_message,"Unknown GSV Type: %02x\n", gsv_type);
             return -1;
     }
 }
@@ -675,6 +662,7 @@ void print_gll() {
     printf("UTC Time Seconds: %d Milliseconds %d\n", GpsData.GllDataGn.utc_time.tv_sec, GpsData.GllDataGn.utc_time.tv_usec);
 }
 
+/* 1 for valid, 0 for not */
 int checksum_valid(char *string) {
     char *checksum_str;
     int checksum;
@@ -696,7 +684,7 @@ int checksum_valid(char *string) {
             return 1;
         }
     } else {
-        //printf("Error: Checksum missing or NULL NMEA message\r\n");
+        sprintf(GpsData.error_message,"Error: Checksum missing or NULL NMEA message\r\n");
         return 0;
     }
     return 0;

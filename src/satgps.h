@@ -138,11 +138,14 @@ typedef struct {
     gga_data_t GgaDataGn;               /* Combined GPS and GLONASS GGA data */
     gsa_data_t GsaDataGn;               /* Combined GPS and GLONASS GSA data */
     txt_data_t TxtDataGn;               /* Combined GPS and GLONASS GSA data */
+    char        error_message[256];     /* buffer for error messages */
 } gps_data_t;
 
 
 int gps_open();
 int gps_read(char *);
+void gps_get_error(char *);
+
 
 int checksum_valid(char *);
 int hex2int(char *);
