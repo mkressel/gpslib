@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <termios.h>
-#include <time.h>
+#include <sys/time.h>
 #include <stdlib.h>
 
 #include "serial.h"
@@ -88,7 +88,7 @@ void gps_clear_data() {
     free(GpsData.TxtDataGn);
 }
 
-/* returns 1 if message is filtered, 0 if not */
+/* returns > 0 if message is filtered, 0 if not */
 int gps_is_filtered(int msg_type) {
     return (GpsData.filters & msg_type);
 }
@@ -357,11 +357,11 @@ int parse_rmc(char *buffer) {
         GpsData.RmcDataGn->valid = 1;
     } else if(strncmp(field[2], "V", 1) == 0) {
         GpsData.RmcDataGn->valid = 0;
-        sprintf(GpsData.error_message, "RMC Data void: %s\n", GpsData.sentence);
+        sprintf(GpsData.error_message, "RMC data void (invalid): %s\n", GpsData.sentence);
         return -1;
     } else {
         GpsData.RmcDataGn->valid = 0;
-        sprintf(GpsData.error_message, "RMC Data unknown Valid flag: %s\n", GpsData.sentence);
+        sprintf(GpsData.error_message, "RMC data unknown Valid flag: %s\n", GpsData.sentence);
         return -1;
     }
 
@@ -467,6 +467,8 @@ int parse_vtg(char *buffer) {
         GpsData.VtgDataGn->speed = strtod(field[7], &eptr) * METERS_PER_SECOND_PER_KPH;
     }
 
+    return 0;
+
 }
 
 
@@ -558,6 +560,8 @@ int parse_gga(char *buffer) {
     GpsData.GgaDataGn->age_of_differential = strtod(field[13], &eptr);
     GpsData.GgaDataGn->reference_id = atoi(field[14]);
 
+    return 0;
+
 }
 
 /*
@@ -615,9 +619,8 @@ int parse_gsa(char *buffer) {
  */
 
 int parse_txt(char *buffer) {
-    int num_fields, i;
+    int num_fields;
     char *field[GPS_MAX_FIELDS];
-    char *eptr;
     char *message;
     char temp_buffer[256];
 
@@ -689,7 +692,7 @@ void print_gga() {
 
     printf("=== Current GGA data ===\n");
     printf("UTC Time string: %s\n", GpsData.GgaDataGn->utc_time_string);
-    printf("UTC Time Seconds: %d Milliseconds %d\n", GpsData.GgaDataGn->utc_time.tv_sec,
+    printf("UTC Time Seconds: %ld Milliseconds %ld\n", GpsData.GgaDataGn->utc_time.tv_sec,
            GpsData.GgaDataGn->utc_time.tv_usec);
     printf("Latitude: %.6f\n", GpsData.GgaDataGn->latitude);
     printf("Longitude: %.6f\n", GpsData.GgaDataGn->longitude);
@@ -813,7 +816,7 @@ void print_gll() {
     printf("Latitude: %.6f\n", GpsData.GllDataGn->latitude);
     printf("Longitude: %.6f\n", GpsData.GllDataGn->longitude);
     printf("UTC Time Raw String: %s\n", GpsData.GllDataGn->utc_time_string);
-    printf("UTC Time Seconds: %d Milliseconds %d\n", GpsData.GllDataGn->utc_time.tv_sec,
+    printf("UTC Time Seconds: %ld Milliseconds %ld\n", GpsData.GllDataGn->utc_time.tv_sec,
            GpsData.GllDataGn->utc_time.tv_usec);
 }
 

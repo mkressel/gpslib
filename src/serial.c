@@ -36,7 +36,7 @@ int serial_open() {
     tty.c_cflag |= CS8;         /* 8-bit characters */
     tty.c_cflag &= ~PARENB;     /* no parity bit */
     tty.c_cflag &= ~CSTOPB;     /* only need 1 stop bit */
-    tty.c_cflag &= ~CRTSCTS;    /* no hardware flowcontrol */
+    //tty.c_cflag &= ~CRTSCTS;    /* no hardware flowcontrol */
 
     /* setup for non-canonical mode */
     tty.c_iflag &= ~(IGNBRK | BRKINT | PARMRK | ISTRIP | INLCR | IGNCR | ICRNL | IXON);
@@ -49,7 +49,7 @@ int serial_open() {
     tty.c_cc[VTIME] = 1;
 
     if (tcsetattr(serial_fd, TCSANOW, &tty) != 0) {
-        printf("Error from tcsetattr: %s\n", strerror(errno));
+        //printf("Error from tcsetattr: %s\n", strerror(errno));
         return -1;
     }
 
@@ -81,6 +81,11 @@ int serial_readln(char * buffer) {
 }
 
 int serial_close() {
-    return close(serial_fd);
+    int retval = 0;
+    if(serial_fd != -1) {
+        retval = close(serial_fd);
+        serial_fd = -1;
+    }
+    return retval;
 }
 
