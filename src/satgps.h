@@ -26,6 +26,7 @@
 #define NMEA_PREFIX_GNGSA           "$GNGSA"    /* GPS DOP and active satellites */
 #define NMEA_PREFIX_GNTXT           "$GNTXT"    /* GPS DOP and active satellites */
 
+/* Sentence filter bitmasks. Use gps_set_filters() to turn on or off */
 #define GLGSV_MESSAGE       1<<0    /* $GLGSV */
 #define GPGSV_MESSAGE       1<<1    /* $GPGSV */
 #define GNGLL_MESSAGE       1<<2    /* $GNGLL */
@@ -151,12 +152,13 @@ typedef struct {
 } gps_data_t;
 
 
-int gps_open();
-int gps_close();
+int gps_open(void);
+int gps_close(void);
 int gps_read(char *);
+gps_data_t *gps_get_data_ptr(void);
 void gps_get_error(char *);
 void gps_set_filters(int);
-void gps_clear_data();
+void gps_clear_data(void);
 int gps_is_filtered(int);
 
 
@@ -176,12 +178,12 @@ int parse_gsa(char *);
 int parse_txt(char *);
 
 void print_gsv(int);
-void print_gll();
-void print_rmc();
-void print_vtg();
-void print_gga();
-void print_gsa();
-void print_txt();
+void print_gll(void);
+void print_rmc(void);
+void print_vtg(void);
+void print_gga(void);
+void print_gsa(void);
+void print_txt(void);
 void print_binary(unsigned int);
 
 

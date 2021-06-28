@@ -39,6 +39,11 @@ void gps_get_error(char *error_string) {
     strcpy(error_string, GpsData.error_message);
 }
 
+/* returns pointer to GpsData struct */
+gps_data_t *gps_get_data_ptr(void) {
+    return &GpsData;
+}
+
 /* Sets which NMEA messages we will be listening for using bit mask. */
 void gps_set_filters(int filters) {
 
@@ -201,13 +206,13 @@ int parse_gsv(char *buffer, int msg_type) {
             GsvData = GpsData.GsvDataGlonass;
             break;
         default:
-            sprintf(GpsData.error_message, "Bad GSV message type: %s\n", GpsData.sentence);
+            sprintf(GpsData.error_message, "Bad GSV message type: %s", GpsData.sentence);
             return -1;
     }
 
     num_fields = parse_fields(buffer, field, GPS_MAX_FIELDS);
     if (num_fields < 1) {
-        sprintf(GpsData.error_message, "Bad GSV parse of sentence: %s\n", GpsData.sentence);
+        sprintf(GpsData.error_message, "Bad GSV parse of sentence: %s", GpsData.sentence);
         return -1;
     }
 
@@ -267,7 +272,7 @@ int parse_gll(char *buffer) {
 
     num_fields = parse_fields(buffer, field, GPS_MAX_FIELDS);
     if (num_fields < 1) {
-        sprintf(GpsData.error_message, "Bad GLL parse of sentence: %s\n", GpsData.sentence);
+        sprintf(GpsData.error_message, "Bad GLL parse of sentence: %s", GpsData.sentence);
         return -1;
     }
 
@@ -348,7 +353,7 @@ int parse_rmc(char *buffer) {
 
     num_fields = parse_fields(buffer, field, GPS_MAX_FIELDS);
     if (num_fields < 1) {
-        sprintf(GpsData.error_message, "Bad RMC parse of sentence: %s\n", GpsData.sentence);
+        sprintf(GpsData.error_message, "Bad RMC parse of sentence: %s", GpsData.sentence);
         return -1;
     }
 
@@ -357,11 +362,12 @@ int parse_rmc(char *buffer) {
         GpsData.RmcDataGn->valid = 1;
     } else if(strncmp(field[2], "V", 1) == 0) {
         GpsData.RmcDataGn->valid = 0;
-        sprintf(GpsData.error_message, "RMC data void (invalid): %s\n", GpsData.sentence);
-        return -1;
+        // technically, the sentence is still "valid" even though the data is not, so parse as normal
+        //sprintf(GpsData.error_message, "RMC data void (invalid): %s\n", GpsData.sentence);
+        //return -1;
     } else {
         GpsData.RmcDataGn->valid = 0;
-        sprintf(GpsData.error_message, "RMC data unknown Valid flag: %s\n", GpsData.sentence);
+        sprintf(GpsData.error_message, "RMC data unknown Valid flag: %s", GpsData.sentence);
         return -1;
     }
 
@@ -444,7 +450,7 @@ int parse_vtg(char *buffer) {
     char *eptr;
     num_fields = parse_fields(buffer, field, GPS_MAX_FIELDS);
     if (num_fields < 1) {
-        sprintf(GpsData.error_message, "Bad VTG parse of sentence: %s\n", GpsData.sentence);
+        sprintf(GpsData.error_message, "Bad VTG parse of sentence: %s", GpsData.sentence);
         return -1;
     }
 
@@ -506,7 +512,7 @@ int parse_gga(char *buffer) {
 
     num_fields = parse_fields(buffer, field, GPS_MAX_FIELDS);
     if (num_fields < 1) {
-        sprintf(GpsData.error_message, "Bad GGA parse of sentence: %s\n", GpsData.sentence);
+        sprintf(GpsData.error_message, "Bad GGA parse of sentence: %s", GpsData.sentence);
         return -1;
     }
 
@@ -583,7 +589,7 @@ int parse_gsa(char *buffer) {
 
     num_fields = parse_fields(buffer, field, GPS_MAX_FIELDS);
     if (num_fields < 1) {
-        sprintf(GpsData.error_message, "Bad GLL parse of sentence: %s\n", GpsData.sentence);
+        sprintf(GpsData.error_message, "Bad GLL parse of sentence: %s", GpsData.sentence);
         return -1;
     }
 
@@ -593,7 +599,7 @@ int parse_gsa(char *buffer) {
     } else if (strncmp(field[1], "A", 1) == 0) {
         GpsData.GsaDataGn->mode_1 = 1;
     } else {
-        sprintf(GpsData.error_message, "Invalid GSA Mode 1: %s\n", field[1]);
+        sprintf(GpsData.error_message, "Invalid GSA Mode 1: %s", field[1]);
         return -1;
     }
 
@@ -630,7 +636,7 @@ int parse_txt(char *buffer) {
 
     num_fields = parse_fields(buffer, field, GPS_MAX_FIELDS);
     if (num_fields < 1) {
-        sprintf(GpsData.error_message, "Bad TXT parse of sentence: %s\n", GpsData.sentence);
+        sprintf(GpsData.error_message, "Bad TXT parse of sentence: %s", GpsData.sentence);
         return -1;
     }
 
@@ -645,7 +651,7 @@ int parse_txt(char *buffer) {
         strcpy(GpsData.TxtDataGn->message[sentence_number], message);
         GpsData.TxtDataGn->text_id[sentence_number] = text_id;
     } else {
-        sprintf(GpsData.error_message, "Bad TXT sentence number: %d\n", sentence_number);
+        sprintf(GpsData.error_message, "Bad TXT sentence number: %d", sentence_number);
         return -1;
     }
 
@@ -763,7 +769,7 @@ int get_prn_number(int prn, int gsv_type) {
             return prn;
             break;
         default:
-            sprintf(GpsData.error_message, "Unknown GSV Type: %02x\n", gsv_type);
+            sprintf(GpsData.error_message, "Unknown GSV Type: %02x", gsv_type);
             return -1;
     }
 }
@@ -842,7 +848,7 @@ int checksum_valid(char *string) {
             return 1;
         }
     } else {
-        sprintf(GpsData.error_message, "Error: Checksum missing or NULL NMEA message: %s\n", GpsData.sentence);
+        sprintf(GpsData.error_message, "Error: Checksum missing or NULL NMEA message: %s", GpsData.sentence);
         return 0;
     }
     return 0;

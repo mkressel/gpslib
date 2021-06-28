@@ -16,12 +16,12 @@ void shutdown() {
 
 
 int main(int argc, char **argv) {
-    int sfd;
+    //int sfd;
     char buffer[256];
     char sentence[256];
     char error[256];
-    int nbytes;
-    int gps_message_type;
+    //int nbytes;
+    //int gps_message_type;
 
     signal(SIGINT, shutdown);
 
