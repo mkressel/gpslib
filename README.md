@@ -18,9 +18,9 @@ In your source folder:
 ### To Test
 In the build/ folder run:
 
-	./gpslib_tester
+	./satgps_tester
 		
-The tester will print out all the data contained in the global variables (there are a lot.) The idea is to have all the data ready to use, and an application can query any of the GPS data at ant time. 
+The tester will print out all the data contained in the global variables (there are a lot; some are commented out.) The idea is to have all the data ready to use, and an application can query any of the GPS data at ant time. 
 
 
 ### Data Handling
@@ -31,7 +31,7 @@ Data is loaded into a global variable of type **gps_data_t**. As NMEA sentences 
 
 Most GPS data sentences have time fields and/or is-valid flags, which can be used to validate data. GPS (I'm pretty sure) is not accurate enough to point a satellite on its own, but combined with data from other instruments, the GPS data in this library might be used to provide medium accuracy local coordinates with speed and (geocentric) vectors.
 
-The **gpslib_tester** executable shows how to interact with the library. 
+The **satgps_tester** executable shows how to interact with the library. 
 
 *Please note: This is a work in progress so the code is changing often. Things will likely break*
 
