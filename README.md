@@ -25,7 +25,11 @@ The tester will print out all the data contained in the global variables (there 
 
 ### Data Handling
 
-Data is loaded into a global variable of type **gps_data_t**. As NMEA sentences are parsed, the **gps_data_t** struct is filled with new data. The data remains until the variable is overwritten by a new parsed NMEA sentence.
+Data is loaded into a global variable of type **gps_data_t**. As NMEA sentences are parsed, the **gps_data_t** struct is filled with new data. The data remains until the variable is overwritten by a new parsed NMEA sentence. You can control which structs are filled by setting the filters (defined in satgps.h) e.g.:
+
+	gps_set_filters(GNRMC_MESSAGE | GNGLL_MESSAGE | GNTXT_MESSAGE);
+	
+Would fill the RMC, GLL, and TXT data structs in the gps_data_t global. All other sentences will be ignored. If you filter all the fields, the gps_data_t struct uses about 16K, so for small memory projects, you probably want to use the filter.
 
 **Care should be taken to make sure the data is valid and current before using it in any location-sensitive project.** 
 
