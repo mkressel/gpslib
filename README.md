@@ -18,20 +18,24 @@ In your source folder:
 ### To Test
 In the build/ folder run:
 
-	./gpslib_tester
+	./satgps_tester
 		
-The tester will print out all the data contained in the global variables (there are a lot.) The idea is to have all the data ready to use, and an application can query any of the GPS data at ant time. 
+The satgps_tester program will print out all the data stored in the global variables (there are a lot; some are commented out for brevity.)  
 
 
 ### Data Handling
 
-Data is loaded into a global variable of type **gps_data_t**. As NMEA sentences are parsed, the **gps_data_t** struct is filled with new data. The data remains until the variable is overwritten by a new parsed NMEA sentence.
+Data is loaded into a global variable of type **gps_data_t**. As NMEA sentences are parsed, the **gps_data_t** struct is filled with new data. The data remains until the variable is overwritten by a new parsed NMEA sentence. You can control which structs are filled by setting the filters (defined in satgps.h) e.g.:
+
+	gps_set_filters(GNRMC_MESSAGE | GNGLL_MESSAGE | GNTXT_MESSAGE);
+	
+Would fill the RMC, GLL, and TXT data structs in the gps_data_t global. All other sentences will be ignored. If you filter all the fields, the gps_data_t struct uses about 16K, so for small memory projects, you probably want to use the filter.
 
 **Care should be taken to make sure the data is valid and current before using it in any location-sensitive project.** 
 
 Most GPS data sentences have time fields and/or is-valid flags, which can be used to validate data. GPS (I'm pretty sure) is not accurate enough to point a satellite on its own, but combined with data from other instruments, the GPS data in this library might be used to provide medium accuracy local coordinates with speed and (geocentric) vectors.
 
-The **gpslib_tester** executable shows how to interact with the library. 
+The **satgps_tester** executable shows how to interact with the library. 
 
 *Please note: This is a work in progress so the code is changing often. Things will likely break*
 
