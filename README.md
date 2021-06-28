@@ -20,7 +20,7 @@ In the build/ folder run:
 
 	./satgps_tester
 		
-The tester will print out all the data contained in the global variables (there are a lot; some are commented out.) The idea is to have all the data ready to use, and an application can query any of the GPS data at ant time. 
+The satgps_tester program will print out all the data stored in the global variables (there are a lot; some are commented out for brevity.)  
 
 
 ### Data Handling
